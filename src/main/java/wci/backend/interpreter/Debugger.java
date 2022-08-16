@@ -1,15 +1,19 @@
 package wci.backend.interpreter;
 
+import wci.frontend.scan.PascalScanner;
+import wci.frontend.scan.PascalTokenType;
+import wci.frontend.scan.Scanner;
+import wci.frontend.scan.Token;
+import wci.frontend.scan.TokenType;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 import wci.frontend.*;
-import wci.frontend.pascal.*;
 import wci.backend.*;
 import wci.message.*;
 
-import static wci.frontend.pascal.PascalTokenType.*;
+import static wci.frontend.scan.PascalTokenType.*;
 
 /**
  * <h1>Debugger</h1>

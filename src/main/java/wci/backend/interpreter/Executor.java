@@ -1,9 +1,10 @@
 package wci.backend.interpreter;
 
+import wci.frontend.scan.PascalScanner;
+import wci.frontend.scan.Scanner;
 import java.io.*;
 
 import wci.frontend.*;
-import wci.frontend.pascal.*;
 import wci.intermediate.*;
 import wci.intermediate.icodeimpl.*;
 import wci.backend.*;

@@ -1,7 +1,9 @@
 package wci.frontend;
 
-import wci.frontend.pascal.PascalParserTD;
-import wci.frontend.pascal.PascalScanner;
+import wci.frontend.parse.Parser;
+import wci.frontend.scan.Scanner;
+import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.PascalScanner;
 
 /**
  * <h1>FrontendFactory</h1>

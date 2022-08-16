@@ -1,5 +1,6 @@
 package wci;
 
+import wci.frontend.parse.Parser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 

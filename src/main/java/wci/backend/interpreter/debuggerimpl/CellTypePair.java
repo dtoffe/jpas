@@ -5,13 +5,13 @@ import java.util.EnumSet;
 import java.util.HashMap;
 
 import wci.frontend.*;
-import wci.frontend.pascal.PascalTokenType;
+import wci.frontend.scan.PascalTokenType;
 import wci.intermediate.*;
 import wci.backend.interpreter.*;
 import wci.intermediate.symtabimpl.Predefined;
 import wci.intermediate.typeimpl.TypeFormImpl;
 
-import static wci.frontend.pascal.PascalTokenType.*;
+import static wci.frontend.scan.PascalTokenType.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 

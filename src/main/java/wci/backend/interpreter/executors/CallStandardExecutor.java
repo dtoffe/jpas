@@ -1,5 +1,7 @@
 package wci.backend.interpreter.executors;
 
+import wci.frontend.scan.Token;
+import wci.frontend.scan.TokenType;
 import java.util.ArrayList;
 
 import wci.frontend.*;
@@ -7,7 +9,7 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.backend.interpreter.*;
 
-import static wci.frontend.pascal.PascalTokenType.*;
+import static wci.frontend.scan.PascalTokenType.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;

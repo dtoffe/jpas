@@ -7,7 +7,7 @@ import wci.intermediate.symtabimpl.*;
 import wci.backend.interpreter.*;
 import wci.message.*;
 
-import static wci.frontend.pascal.PascalTokenType.SEMICOLON;
+import static wci.frontend.scan.PascalTokenType.SEMICOLON;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.ROUTINE_SYMTAB;
 
 /**

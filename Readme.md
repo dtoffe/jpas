@@ -1,4 +1,4 @@
-# JPas - A Pascal compiler written in Java
+# JPas - A Pascal(ish) language compiler written in Java
 
 This project is started from the source code in the book "Writing Compilers and Interpreters (3rd edition): A Modern Software Engineering Approach Using Java®, Third Edition", Copyright © 2009 by Ronald Mak, Published by Wiley Publishing, Inc.
 The original code is "Copyright © 2009 by Ronald Mak - For instructional purposes only. No warranties."

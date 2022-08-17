@@ -11,8 +11,8 @@ I would like to write a more complete compiler for a "pascalish", not necessaril
 
 ## Roadmap (hopefully...)
 
-- Extract from the original code the precise grammar of the Pascal subset supported, since it is surprisingly not specified in the book (at least explicitly, in a succint (E)BNF grammar form).
-- Rename and reorganize packages and project structure
+- DONE (kind of, see /docs/Original Grammar.txt) ~Extract from the original code the precise grammar of the Pascal subset supported, since it is surprisingly not specified in the book (at least explicitly, in a succint (E)BNF grammar form).~
+- Partially DONE (more can come later). ~Rename and reorganize packages and project structure.~
 - Eliminate the framework parts intended to make support for another languages straightforward, since it is not something I intend to do. Keep the parts that make writing alternative scanners, parsers or code generation backends possible.
 - Implement Modula style statements (IF <cond> THEN <statements> [[ELSIF <statements>] ELSE <statements>] END instead of IF <cond> THEN (<statement> | BEGIN <statements> END) [ELSE IF... etc.).
 - Consider if there is any benefit in building a specific language AST instead of the generic ICode* implementation, do it if appropiate.

@@ -1,10 +1,10 @@
 package wci.frontend.scan.tokens;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.scan.PascalToken;
+import wci.frontend.scan.TokenType;
+import wci.frontend.scan.Token;
 import wci.frontend.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
+import static wci.frontend.scan.TokenType.*;
 
 /**
  * <h1>PascalWordToken</h1>
@@ -14,14 +14,14 @@ import static wci.frontend.scan.PascalTokenType.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class PascalWordToken extends PascalToken
+public class WordToken extends Token
 {
     /**
      * Constructor.
      * @param source the source from where to fetch the token's characters.
      * @throws Exception if an error occurred.
      */
-    public PascalWordToken(Source source)
+    public WordToken(Source source)
         throws Exception
     {
         super(source);
@@ -48,7 +48,7 @@ public class PascalWordToken extends PascalToken
 
         // Is it a reserved word or an identifier?
         type = (RESERVED_WORDS.contains(text.toLowerCase()))
-               ? PascalTokenType.valueOf(text.toUpperCase())  // reserved word
+               ? TokenType.valueOf(text.toUpperCase())  // reserved word
                : IDENTIFIER;                                  // identifier
     }
 }

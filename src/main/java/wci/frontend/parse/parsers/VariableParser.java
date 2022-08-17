@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -12,8 +12,8 @@ import wci.intermediate.symtabimpl.*;
 import wci.intermediate.icodeimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.FUNCTION;
 import static wci.intermediate.symtabimpl.DefinitionImpl.UNDEFINED;
@@ -44,12 +44,12 @@ public class VariableParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public VariableParser(PascalParserTD parent)
+    public VariableParser(TopDownParser parent)
     {
         super(parent);
     }
 
-    private static final EnumSet<PascalTokenType> SUBSCRIPT_FIELD_START_SET =
+    private static final EnumSet<TokenType> SUBSCRIPT_FIELD_START_SET =
         EnumSet.of(LEFT_BRACKET, DOT);
 
     /**
@@ -141,7 +141,7 @@ public class VariableParser extends StatementParser
     }
 
     // Synchronization set for the ] token.
-    private static final EnumSet<PascalTokenType> RIGHT_BRACKET_SET =
+    private static final EnumSet<TokenType> RIGHT_BRACKET_SET =
         EnumSet.of(RIGHT_BRACKET, EQUALS, SEMICOLON);
 
     /**

@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import java.util.EnumSet;
 
@@ -10,8 +10,8 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
@@ -32,13 +32,13 @@ class SimpleTypeParser extends TypeSpecificationParser
      * Constructor.
      * @param parent the parent parser.
      */
-    protected SimpleTypeParser(PascalParserTD parent)
+    protected SimpleTypeParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for starting a simple type specification.
-    static final EnumSet<PascalTokenType> SIMPLE_TYPE_START_SET =
+    static final EnumSet<TokenType> SIMPLE_TYPE_START_SET =
         ConstantDefinitionsParser.CONSTANT_START_SET.clone();
     static {
         SIMPLE_TYPE_START_SET.add(LEFT_PAREN);
@@ -58,7 +58,7 @@ class SimpleTypeParser extends TypeSpecificationParser
         // Synchronize at the start of a simple type specification.
         token = synchronize(SIMPLE_TYPE_START_SET);
 
-        switch ((PascalTokenType) token.getType()) {
+        switch ((TokenType) token.getType()) {
 
             case IDENTIFIER: {
                 String name = token.getText().toLowerCase();

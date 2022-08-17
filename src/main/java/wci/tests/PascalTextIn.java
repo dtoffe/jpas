@@ -6,8 +6,8 @@ import wci.frontend.scan.Scanner;
 import wci.frontend.Source;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
-import wci.frontend.scan.PascalScanner;
-import static wci.frontend.scan.PascalTokenType.*;
+import wci.frontend.scan.HandCodedScanner;
+import static wci.frontend.scan.TokenType.*;
 
 /**
  * <h1>PascalTextIn</h1>
@@ -24,7 +24,7 @@ public class PascalTextIn
 
     static {
         try {
-            scanner = new PascalScanner(
+            scanner = new HandCodedScanner(
                           new Source(
                               new BufferedReader(
                                   new InputStreamReader(System.in))));

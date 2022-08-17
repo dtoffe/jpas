@@ -1,6 +1,6 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import wci.frontend.*;
@@ -8,8 +8,8 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
@@ -20,7 +20,7 @@ public class SubrangeTypeParser extends TypeSpecificationParser
      * Constructor.
      * @param parent the parent parser.
      */
-    protected SubrangeTypeParser(PascalParserTD parent)
+    protected SubrangeTypeParser(TopDownParser parent)
     {
         super(parent);
     }

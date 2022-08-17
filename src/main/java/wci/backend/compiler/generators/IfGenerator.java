@@ -31,7 +31,7 @@ public class IfGenerator extends StatementGenerator
      * @param node the root node of the statement.
      */
     public void generate(ICodeNode node)
-        throws PascalCompilerException
+        throws CompilerException
     {
         ArrayList<ICodeNode> children = node.getChildren();
         ICodeNode expressionNode = children.get(0);

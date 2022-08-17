@@ -1,7 +1,7 @@
     The specific dialect of Pascal supported by the original project is not specified anywhere in the source code. Notwithstanding, a look at the reserved words, special symbols, numbers and other tokens reveals that they correspond very well with the definitions in the Pascal ISO 7185 standard document.
     However, there are certain language features that are not implemented. Looking at the code, at least SET and POINTER types, LABELs and GOTO statement, variant RECORDs and WITH statement are not implemented. I conclude that the author targeted Pascal ISO 7185 minus these features (and possibly anothers I have not seen), so as to keep the project more concise and manageable.
 
-    This tokens are listed in the PascalTokenType enum:
+    This tokens are listed in the TokenType enum:
 
 - Tokens
 

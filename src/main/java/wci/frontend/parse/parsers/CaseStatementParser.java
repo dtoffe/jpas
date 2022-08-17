@@ -1,8 +1,8 @@
 package wci.frontend.parse.parsers;
 
 import wci.frontend.scan.tokens.EofToken;
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -13,8 +13,8 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
@@ -35,17 +35,17 @@ public class CaseStatementParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public CaseStatementParser(PascalParserTD parent)
+    public CaseStatementParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for starting a CASE option constant.
-    private static final EnumSet<PascalTokenType> CONSTANT_START_SET =
+    private static final EnumSet<TokenType> CONSTANT_START_SET =
         EnumSet.of(IDENTIFIER, INTEGER, PLUS, MINUS, STRING);
 
     // Synchronization set for OF.
-    private static final EnumSet<PascalTokenType> OF_SET =
+    private static final EnumSet<TokenType> OF_SET =
         CONSTANT_START_SET.clone();
     static {
         OF_SET.add(OF);
@@ -169,7 +169,7 @@ public class CaseStatementParser extends StatementParser
     }
 
     // Synchronization set for COMMA.
-    private static final EnumSet<PascalTokenType> COMMA_SET =
+    private static final EnumSet<TokenType> COMMA_SET =
         CONSTANT_START_SET.clone();
     static {
         COMMA_SET.add(COMMA);
@@ -241,7 +241,7 @@ public class CaseStatementParser extends StatementParser
         }
 
         // Parse the constant.
-        switch ((PascalTokenType) token.getType()) {
+        switch ((TokenType) token.getType()) {
 
             case IDENTIFIER: {
                 constantNode = parseIdentifierConstant(token, sign);

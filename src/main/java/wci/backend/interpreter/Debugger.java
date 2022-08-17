@@ -1,7 +1,7 @@
 package wci.backend.interpreter;
 
-import wci.frontend.scan.PascalScanner;
-import wci.frontend.scan.PascalTokenType;
+import wci.frontend.scan.HandCodedScanner;
+import wci.frontend.scan.TokenType;
 import wci.frontend.scan.Scanner;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
@@ -13,7 +13,7 @@ import wci.frontend.*;
 import wci.backend.*;
 import wci.message.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
+import static wci.frontend.scan.TokenType.*;
 
 /**
  * <h1>Debugger</h1>
@@ -46,7 +46,7 @@ public abstract class Debugger
 
         // Create the command input from the standard input.
         try {
-            commandInput = new PascalScanner(
+            commandInput = new HandCodedScanner(
                                new Source(
                                    new BufferedReader(
                                        new InputStreamReader(System.in))));
@@ -176,7 +176,7 @@ public abstract class Debugger
             tokenType = token.getType();
         }
 
-        switch ((PascalTokenType) tokenType) {
+        switch ((TokenType) tokenType) {
 
             case INTEGER: {
                 Integer value = (Integer) token.getValue();

@@ -40,7 +40,7 @@ public class DeclaredRoutineGenerator extends CodeGenerator
      * @param routineId the symbol table entry of the routine's name.
      */
     public void generate(SymTabEntry routineId)
-        throws PascalCompilerException
+        throws CompilerException
     {
         this.routineId = routineId;
         this.routineName = routineId.getName();
@@ -129,7 +129,7 @@ public class DeclaredRoutineGenerator extends CodeGenerator
      * Generate code for the routine's body.
      */
     private void generateRoutineCode()
-        throws PascalCompilerException
+        throws CompilerException
     {
         ICode iCode = (ICode) routineId.getAttribute(ROUTINE_ICODE);
         ICodeNode root = iCode.getRoot();

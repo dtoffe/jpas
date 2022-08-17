@@ -16,12 +16,12 @@ import static wci.message.MessageType.*;
 /**
  * <h1>Pascal</h1>
  *
- * <p>Compile or interpret a Pascal source program.</p>
+ * <p>Compile or interpret a JPas source program.</p>
  *
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class Pascal
+public class JPas
 {
     private Parser parser;            // language-independent parser
     private Source source;            // language-independent scanner
@@ -43,7 +43,7 @@ public class Pascal
      * @param filePath the source file path.
      * @param flags the command line flags.
      */
-    public Pascal(String operation, String filePath, String flags)
+    public JPas(String operation, String filePath, String flags)
     {
         try {
             intermediate = flags.indexOf('i') > -1;
@@ -123,7 +123,7 @@ public class Pascal
             // Source path.
             if (i < args.length) {
                 String path = args[i];
-                new Pascal(operation, path, flags);
+                new JPas(operation, path, flags);
             }
             else {
                 throw new Exception();

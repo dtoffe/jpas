@@ -39,7 +39,7 @@ public class LoopGenerator extends StatementGenerator
      * @param node the root node of the statement.
      */
     public void generate(ICodeNode node)
-        throws PascalCompilerException
+        throws CompilerException
     {
         ArrayList<ICodeNode> loopChildren = node.getChildren();
         ExpressionGenerator expressionGenerator = new ExpressionGenerator(this);

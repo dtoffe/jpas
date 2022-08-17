@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import wci.frontend.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
@@ -34,7 +34,7 @@ public class VariableDeclarationsParser extends DeclarationsParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public VariableDeclarationsParser(PascalParserTD parent)
+    public VariableDeclarationsParser(TopDownParser parent)
     {
         super(parent);
     }
@@ -49,7 +49,7 @@ public class VariableDeclarationsParser extends DeclarationsParser
     }
 
     // Synchronization set for a variable identifier.
-    static final EnumSet<PascalTokenType> IDENTIFIER_SET =
+    static final EnumSet<TokenType> IDENTIFIER_SET =
         DeclarationsParser.VAR_START_SET.clone();
     static {
         IDENTIFIER_SET.add(IDENTIFIER);
@@ -58,22 +58,22 @@ public class VariableDeclarationsParser extends DeclarationsParser
     }
 
     // Synchronization set to start a sublist identifier.
-    static final EnumSet<PascalTokenType> IDENTIFIER_START_SET =
+    static final EnumSet<TokenType> IDENTIFIER_START_SET =
         EnumSet.of(IDENTIFIER, COMMA);
 
     // Synchronization set to follow a sublist identifier.
-    private static final EnumSet<PascalTokenType> IDENTIFIER_FOLLOW_SET =
+    private static final EnumSet<TokenType> IDENTIFIER_FOLLOW_SET =
         EnumSet.of(COLON, SEMICOLON);
     static {
         IDENTIFIER_FOLLOW_SET.addAll(DeclarationsParser.VAR_START_SET);
     }
 
     // Synchronization set for the , token.
-    private static final EnumSet<PascalTokenType> COMMA_SET =
+    private static final EnumSet<TokenType> COMMA_SET =
         EnumSet.of(COMMA, COLON, IDENTIFIER, SEMICOLON);
 
     // Synchronization set for the start of the next definition or declaration.
-    static final EnumSet<PascalTokenType> NEXT_START_SET =
+    static final EnumSet<TokenType> NEXT_START_SET =
         DeclarationsParser.ROUTINE_START_SET.clone();
     static {
         NEXT_START_SET.add(IDENTIFIER);
@@ -130,8 +130,8 @@ public class VariableDeclarationsParser extends DeclarationsParser
      */
     protected ArrayList<SymTabEntry> parseIdentifierSublist(
                                          Token token,
-                                         EnumSet<PascalTokenType> followSet,
-                                         EnumSet<PascalTokenType> commaSet)
+                                         EnumSet<TokenType> followSet,
+                                         EnumSet<TokenType> commaSet)
         throws Exception
     {
         ArrayList<SymTabEntry> sublist = new ArrayList<SymTabEntry>();
@@ -213,7 +213,7 @@ public class VariableDeclarationsParser extends DeclarationsParser
     }
 
     // Synchronization set for the : token.
-    private static final EnumSet<PascalTokenType> COLON_SET =
+    private static final EnumSet<TokenType> COLON_SET =
         EnumSet.of(COLON, SEMICOLON);
 
     /**

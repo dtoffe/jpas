@@ -8,14 +8,14 @@ import wci.frontend.scan.Token;
 import java.util.EnumSet;
 
 import wci.frontend.*;
-import wci.frontend.PascalErrorHandler;
+import wci.frontend.ErrorHandler;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 import wci.message.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.message.MessageType.PARSER_SUMMARY;
@@ -28,15 +28,15 @@ import static wci.message.MessageType.PARSER_SUMMARY;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class PascalParserTD extends Parser
+public class TopDownParser extends Parser
 {
-    protected static PascalErrorHandler errorHandler = new PascalErrorHandler();
+    protected static ErrorHandler errorHandler = new ErrorHandler();
 
     /**
      * Constructor.
      * @param scanner the scanner to be used with this parser.
      */
-    public PascalParserTD(Scanner scanner)
+    public TopDownParser(Scanner scanner)
     {
         super(scanner);
     }
@@ -45,7 +45,7 @@ public class PascalParserTD extends Parser
      * Constructor for subclasses.
      * @param parent the parent parser.
      */
-    public PascalParserTD(PascalParserTD parent)
+    public TopDownParser(TopDownParser parent)
     {
         super(parent.getScanner());
     }
@@ -54,7 +54,7 @@ public class PascalParserTD extends Parser
      * Getter.
      * @return the error handler.
      */
-    public PascalErrorHandler getErrorHandler()
+    public ErrorHandler getErrorHandler()
     {
         return errorHandler;
     }

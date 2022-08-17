@@ -8,7 +8,7 @@ package wci.frontend;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public enum PascalErrorCode
+public enum ErrorCode
 {
     ALREADY_FORWARDED("Already specified in FORWARD"),
     CASE_CONSTANT_REUSED("CASE constant reused"),
@@ -79,7 +79,7 @@ public enum PascalErrorCode
      * Constructor.
      * @param message the error message.
      */
-    PascalErrorCode(String message)
+    ErrorCode(String message)
     {
         this.status = 0;
         this.message = message;
@@ -90,7 +90,7 @@ public enum PascalErrorCode
      * @param status the exit status.
      * @param message the error message.
      */
-    PascalErrorCode(int status, String message)
+    ErrorCode(int status, String message)
     {
         this.status = status;
         this.message = message;

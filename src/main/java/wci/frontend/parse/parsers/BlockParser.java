@@ -1,13 +1,13 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import wci.frontend.*;
 import wci.intermediate.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
@@ -20,13 +20,13 @@ import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class BlockParser extends PascalParserTD
+public class BlockParser extends TopDownParser
 {
     /**
      * Constructor.
      * @param parent the parent parser.
      */
-    public BlockParser(PascalParserTD parent)
+    public BlockParser(TopDownParser parent)
     {
         super(parent);
     }

@@ -1,6 +1,6 @@
 package wci.backend.interpreter;
 
-import wci.frontend.scan.PascalScanner;
+import wci.frontend.scan.HandCodedScanner;
 import wci.frontend.scan.Scanner;
 import java.io.*;
 
@@ -39,7 +39,7 @@ public class Executor extends Backend
         errorHandler = new RuntimeErrorHandler();
 
         try {
-            standardIn = new PascalScanner(
+            standardIn = new HandCodedScanner(
                              new Source(
                                  new BufferedReader(
                                      new InputStreamReader(System.in))));

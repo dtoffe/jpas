@@ -2,8 +2,8 @@ package wci.frontend;
 
 import wci.frontend.parse.Parser;
 import wci.frontend.scan.Scanner;
-import wci.frontend.parse.PascalParserTD;
-import wci.frontend.scan.PascalScanner;
+import wci.frontend.parse.TopDownParser;
+import wci.frontend.scan.HandCodedScanner;
 
 /**
  * <h1>FrontendFactory</h1>
@@ -30,8 +30,8 @@ public class FrontendFactory
         if (language.equalsIgnoreCase("Pascal") &&
             type.equalsIgnoreCase("top-down"))
         {
-            Scanner scanner = new PascalScanner(source);
-            return new PascalParserTD(scanner);
+            Scanner scanner = new HandCodedScanner(source);
+            return new TopDownParser(scanner);
         }
         else if (!language.equalsIgnoreCase("Pascal")) {
             throw new Exception("Parser factory: Invalid language '" +

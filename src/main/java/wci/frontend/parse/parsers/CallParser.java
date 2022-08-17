@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ import wci.intermediate.symtabimpl.*;
 import wci.intermediate.icodeimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
@@ -36,7 +36,7 @@ public class CallParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public CallParser(PascalParserTD parent)
+    public CallParser(TopDownParser parent)
     {
         super(parent);
     }
@@ -61,7 +61,7 @@ public class CallParser extends StatementParser
     }
 
     // Synchronization set for the , token.
-    private static final EnumSet<PascalTokenType> COMMA_SET =
+    private static final EnumSet<TokenType> COMMA_SET =
         ExpressionParser.EXPR_START_SET.clone();
     static {
         COMMA_SET.add(COMMA);

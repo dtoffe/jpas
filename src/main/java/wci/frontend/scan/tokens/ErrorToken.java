@@ -1,10 +1,10 @@
 package wci.frontend.scan.tokens;
 
-import wci.frontend.PascalErrorCode;
-import wci.frontend.scan.PascalToken;
+import wci.frontend.ErrorCode;
+import wci.frontend.scan.Token;
 import wci.frontend.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
+import static wci.frontend.scan.TokenType.*;
 
 /**
  * <h1>PascalErrorToken</h1>
@@ -14,7 +14,7 @@ import static wci.frontend.scan.PascalTokenType.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class PascalErrorToken extends PascalToken
+public class ErrorToken extends Token
 {
     /**
      * Constructor.
@@ -23,7 +23,7 @@ public class PascalErrorToken extends PascalToken
      * @param tokenText the text of the erroneous token.
      * @throws Exception if an error occurred.
      */
-    public PascalErrorToken(Source source, PascalErrorCode errorCode,
+    public ErrorToken(Source source, ErrorCode errorCode,
                             String tokenText)
         throws Exception
     {

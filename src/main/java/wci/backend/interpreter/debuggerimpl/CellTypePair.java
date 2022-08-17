@@ -5,13 +5,13 @@ import java.util.EnumSet;
 import java.util.HashMap;
 
 import wci.frontend.*;
-import wci.frontend.scan.PascalTokenType;
+import wci.frontend.scan.TokenType;
 import wci.intermediate.*;
 import wci.backend.interpreter.*;
 import wci.intermediate.symtabimpl.Predefined;
 import wci.intermediate.typeimpl.TypeFormImpl;
 
-import static wci.frontend.scan.PascalTokenType.*;
+import static wci.frontend.scan.TokenType.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 
@@ -65,7 +65,7 @@ public class CellTypePair
     }
 
     // Synchronization set for variable modifiers.
-    protected static final EnumSet<PascalTokenType> MODIFIER_SET =
+    protected static final EnumSet<TokenType> MODIFIER_SET =
         EnumSet.of(LEFT_BRACKET, DOT);
 
     /**

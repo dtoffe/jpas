@@ -1,9 +1,9 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.PascalErrorCode;
+import wci.frontend.ErrorCode;
 import wci.frontend.scan.tokens.EofToken;
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -12,8 +12,8 @@ import wci.frontend.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
@@ -26,24 +26,24 @@ import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class StatementParser extends PascalParserTD
+public class StatementParser extends TopDownParser
 {
     /**
      * Constructor.
      * @param parent the parent parser.
      */
-    public StatementParser(PascalParserTD parent)
+    public StatementParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for starting a statement.
-    protected static final EnumSet<PascalTokenType> STMT_START_SET =
-        EnumSet.of(BEGIN, CASE, FOR, PascalTokenType.IF, REPEAT, WHILE,
+    protected static final EnumSet<TokenType> STMT_START_SET =
+        EnumSet.of(BEGIN, CASE, FOR, TokenType.IF, REPEAT, WHILE,
                    IDENTIFIER, SEMICOLON);
 
     // Synchronization set for following a statement.
-    protected static final EnumSet<PascalTokenType> STMT_FOLLOW_SET =
+    protected static final EnumSet<TokenType> STMT_FOLLOW_SET =
         EnumSet.of(SEMICOLON, END, ELSE, UNTIL, DOT);
 
     /**
@@ -58,7 +58,7 @@ public class StatementParser extends PascalParserTD
     {
         ICodeNode statementNode = null;
 
-        switch ((PascalTokenType) token.getType()) {
+        switch ((TokenType) token.getType()) {
 
             case BEGIN: {
                 CompoundStatementParser compoundParser =
@@ -174,12 +174,12 @@ public class StatementParser extends PascalParserTD
      * @throws Exception if an error occurred.
      */
     protected void parseList(Token token, ICodeNode parentNode,
-                             PascalTokenType terminator,
-                             PascalErrorCode errorCode)
+                             TokenType terminator,
+                             ErrorCode errorCode)
         throws Exception
     {
         // Synchronization set for the terminator.
-        EnumSet<PascalTokenType> terminatorSet = STMT_START_SET.clone();
+        EnumSet<TokenType> terminatorSet = STMT_START_SET.clone();
         terminatorSet.add(terminator);
 
         // Loop to parse each statement until the END token

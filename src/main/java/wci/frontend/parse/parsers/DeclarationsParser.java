@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -9,8 +9,8 @@ import java.util.EnumSet;
 import wci.frontend.*;
 import wci.intermediate.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.VARIABLE;
 
@@ -22,33 +22,33 @@ import static wci.intermediate.symtabimpl.DefinitionImpl.VARIABLE;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class DeclarationsParser extends PascalParserTD
+public class DeclarationsParser extends TopDownParser
 {
     /**
      * Constructor.
      * @param parent the parent parser.
      */
-    public DeclarationsParser(PascalParserTD parent)
+    public DeclarationsParser(TopDownParser parent)
     {
         super(parent);
     }
 
-    static final EnumSet<PascalTokenType> DECLARATION_START_SET =
+    static final EnumSet<TokenType> DECLARATION_START_SET =
         EnumSet.of(CONST, TYPE, VAR, PROCEDURE, FUNCTION, BEGIN);
 
-    static final EnumSet<PascalTokenType> TYPE_START_SET =
+    static final EnumSet<TokenType> TYPE_START_SET =
         DECLARATION_START_SET.clone();
     static {
         TYPE_START_SET.remove(CONST);
     }
 
-    static final EnumSet<PascalTokenType> VAR_START_SET =
+    static final EnumSet<TokenType> VAR_START_SET =
         TYPE_START_SET.clone();
     static {
         VAR_START_SET.remove(TYPE);
     }
 
-    static final EnumSet<PascalTokenType> ROUTINE_START_SET =
+    static final EnumSet<TokenType> ROUTINE_START_SET =
         VAR_START_SET.clone();
     static {
         ROUTINE_START_SET.remove(VAR);

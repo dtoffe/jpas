@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -11,8 +11,8 @@ import wci.frontend.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.ARRAY;
 import static wci.intermediate.typeimpl.TypeFormImpl.SUBRANGE;
@@ -33,13 +33,13 @@ class ArrayTypeParser extends TypeSpecificationParser
      * Constructor.
      * @param parent the parent parser.
      */
-    protected ArrayTypeParser(PascalParserTD parent)
+    protected ArrayTypeParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for the [ token.
-    private static final EnumSet<PascalTokenType> LEFT_BRACKET_SET =
+    private static final EnumSet<TokenType> LEFT_BRACKET_SET =
         SimpleTypeParser.SIMPLE_TYPE_START_SET.clone();
     static {
         LEFT_BRACKET_SET.add(LEFT_BRACKET);
@@ -47,11 +47,11 @@ class ArrayTypeParser extends TypeSpecificationParser
     }
 
     // Synchronization set for the ] token.
-    private static final EnumSet<PascalTokenType> RIGHT_BRACKET_SET =
+    private static final EnumSet<TokenType> RIGHT_BRACKET_SET =
         EnumSet.of(RIGHT_BRACKET, OF, SEMICOLON);
 
     // Synchronization set for OF.
-    private static final EnumSet<PascalTokenType> OF_SET =
+    private static final EnumSet<TokenType> OF_SET =
         TypeSpecificationParser.TYPE_START_SET.clone();
     static {
         OF_SET.add(OF);
@@ -104,18 +104,18 @@ class ArrayTypeParser extends TypeSpecificationParser
     }
 
     // Synchronization set to start an index type.
-    private static final EnumSet<PascalTokenType> INDEX_START_SET =
+    private static final EnumSet<TokenType> INDEX_START_SET =
         SimpleTypeParser.SIMPLE_TYPE_START_SET.clone();
     static {
         INDEX_START_SET.add(COMMA);
     }
 
     // Synchronization set to end an index type.
-    private static final EnumSet<PascalTokenType> INDEX_END_SET =
+    private static final EnumSet<TokenType> INDEX_END_SET =
         EnumSet.of(RIGHT_BRACKET, OF, SEMICOLON);
 
     // Synchronization set to follow an index type.
-    private static final EnumSet<PascalTokenType> INDEX_FOLLOW_SET =
+    private static final EnumSet<TokenType> INDEX_FOLLOW_SET =
         INDEX_START_SET.clone();
     static {
         INDEX_FOLLOW_SET.addAll(INDEX_END_SET);

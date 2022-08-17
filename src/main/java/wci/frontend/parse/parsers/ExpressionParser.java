@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -13,8 +13,8 @@ import wci.intermediate.*;
 import wci.intermediate.icodeimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
@@ -34,15 +34,15 @@ public class ExpressionParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public ExpressionParser(PascalParserTD parent)
+    public ExpressionParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for starting an expression.
-    static final EnumSet<PascalTokenType> EXPR_START_SET =
+    static final EnumSet<TokenType> EXPR_START_SET =
         EnumSet.of(PLUS, MINUS, IDENTIFIER, INTEGER, REAL, STRING,
-                   PascalTokenType.NOT, LEFT_PAREN);
+                   TokenType.NOT, LEFT_PAREN);
 
     /**
      * Parse an expression.
@@ -57,13 +57,13 @@ public class ExpressionParser extends StatementParser
     }
 
     // Set of relational operators.
-    private static final EnumSet<PascalTokenType> REL_OPS =
+    private static final EnumSet<TokenType> REL_OPS =
         EnumSet.of(EQUALS, NOT_EQUALS, LESS_THAN, LESS_EQUALS,
                    GREATER_THAN, GREATER_EQUALS);
 
     // Map relational operator tokens to node types.
-    private static final HashMap<PascalTokenType, ICodeNodeType>
-        REL_OPS_MAP = new HashMap<PascalTokenType, ICodeNodeType>();
+    private static final HashMap<TokenType, ICodeNodeType>
+        REL_OPS_MAP = new HashMap<TokenType, ICodeNodeType>();
     static {
         REL_OPS_MAP.put(EQUALS, EQ);
         REL_OPS_MAP.put(NOT_EQUALS, NE);
@@ -131,16 +131,16 @@ public class ExpressionParser extends StatementParser
     }
 
     // Set of additive operators.
-    private static final EnumSet<PascalTokenType> ADD_OPS =
-        EnumSet.of(PLUS, MINUS, PascalTokenType.OR);
+    private static final EnumSet<TokenType> ADD_OPS =
+        EnumSet.of(PLUS, MINUS, TokenType.OR);
 
     // Map additive operator tokens to node types.
-    private static final HashMap<PascalTokenType, ICodeNodeTypeImpl>
-        ADD_OPS_OPS_MAP = new HashMap<PascalTokenType, ICodeNodeTypeImpl>();
+    private static final HashMap<TokenType, ICodeNodeTypeImpl>
+        ADD_OPS_OPS_MAP = new HashMap<TokenType, ICodeNodeTypeImpl>();
     static {
         ADD_OPS_OPS_MAP.put(PLUS, ADD);
         ADD_OPS_OPS_MAP.put(MINUS, SUBTRACT);
-        ADD_OPS_OPS_MAP.put(PascalTokenType.OR, ICodeNodeTypeImpl.OR);
+        ADD_OPS_OPS_MAP.put(TokenType.OR, ICodeNodeTypeImpl.OR);
     };
 
     /**
@@ -210,7 +210,7 @@ public class ExpressionParser extends StatementParser
             rootNode = opNode;
 
             // Determine the result type.
-            switch ((PascalTokenType) operator) {
+            switch ((TokenType) operator) {
 
                 case PLUS:
                 case MINUS: {
@@ -256,18 +256,18 @@ public class ExpressionParser extends StatementParser
     }
 
     // Set of multiplicative operators.
-    private static final EnumSet<PascalTokenType> MULT_OPS =
-        EnumSet.of(STAR, SLASH, DIV, PascalTokenType.MOD, PascalTokenType.AND);
+    private static final EnumSet<TokenType> MULT_OPS =
+        EnumSet.of(STAR, SLASH, DIV, TokenType.MOD, TokenType.AND);
 
     // Map multiplicative operator tokens to node types.
-    private static final HashMap<PascalTokenType, ICodeNodeType>
-        MULT_OPS_OPS_MAP = new HashMap<PascalTokenType, ICodeNodeType>();
+    private static final HashMap<TokenType, ICodeNodeType>
+        MULT_OPS_OPS_MAP = new HashMap<TokenType, ICodeNodeType>();
     static {
         MULT_OPS_OPS_MAP.put(STAR, MULTIPLY);
         MULT_OPS_OPS_MAP.put(SLASH, FLOAT_DIVIDE);
         MULT_OPS_OPS_MAP.put(DIV, INTEGER_DIVIDE);
-        MULT_OPS_OPS_MAP.put(PascalTokenType.MOD, ICodeNodeTypeImpl.MOD);
-        MULT_OPS_OPS_MAP.put(PascalTokenType.AND, ICodeNodeTypeImpl.AND);
+        MULT_OPS_OPS_MAP.put(TokenType.MOD, ICodeNodeTypeImpl.MOD);
+        MULT_OPS_OPS_MAP.put(TokenType.AND, ICodeNodeTypeImpl.AND);
     };
 
     /**
@@ -310,7 +310,7 @@ public class ExpressionParser extends StatementParser
             rootNode = opNode;
 
             // Determine the result type.
-            switch ((PascalTokenType) operator) {
+            switch ((TokenType) operator) {
 
                 case STAR: {
                     // Both operands integer ==> integer result.
@@ -394,7 +394,7 @@ public class ExpressionParser extends StatementParser
         TokenType tokenType = token.getType();
         ICodeNode rootNode = null;
 
-        switch ((PascalTokenType) tokenType) {
+        switch ((TokenType) tokenType) {
 
             case IDENTIFIER: {
                 return parseIdentifier(token);

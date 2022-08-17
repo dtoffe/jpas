@@ -91,7 +91,7 @@ public class CodeGenerator extends Backend
      * @param node the root node of the statement.
      */
     public void generate(ICodeNode node)
-        throws PascalCompilerException
+        throws CompilerException
     {
     }
 
@@ -101,7 +101,7 @@ public class CodeGenerator extends Backend
      * @param routineId the routine's symbol table entry.
      */
     public void generate(SymTabEntry routineId)
-        throws PascalCompilerException
+        throws CompilerException
     {
     }
 

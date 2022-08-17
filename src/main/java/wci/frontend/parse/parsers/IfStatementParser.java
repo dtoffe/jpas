@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import java.util.EnumSet;
 
@@ -11,8 +11,8 @@ import wci.intermediate.icodeimpl.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 
 /**
@@ -29,13 +29,13 @@ public class IfStatementParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public IfStatementParser(PascalParserTD parent)
+    public IfStatementParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for THEN.
-    private static final EnumSet<PascalTokenType> THEN_SET =
+    private static final EnumSet<TokenType> THEN_SET =
         StatementParser.STMT_START_SET.clone();
     static {
         THEN_SET.add(THEN);

@@ -5,8 +5,8 @@ import wci.frontend.scan.Token;
 import wci.frontend.*;
 import wci.message.Message;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.message.MessageType.SYNTAX_ERROR;
 
 /**
@@ -17,7 +17,7 @@ import static wci.message.MessageType.SYNTAX_ERROR;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class PascalErrorHandler
+public class ErrorHandler
 {
     private static final int MAX_ERRORS = 25;
 
@@ -39,7 +39,7 @@ public class PascalErrorHandler
      * @param parser the parser.
      * @return the flagger string.
      */
-    public void flag(Token token, PascalErrorCode errorCode, Parser parser)
+    public void flag(Token token, ErrorCode errorCode, Parser parser)
     {
         // Notify the parser's listeners.
         parser.sendMessage(new Message(SYNTAX_ERROR,
@@ -58,7 +58,7 @@ public class PascalErrorHandler
      * @param errorCode the error code.
      * @param parser the parser.
      */
-    public void abortTranslation(PascalErrorCode errorCode, Parser parser)
+    public void abortTranslation(ErrorCode errorCode, Parser parser)
     {
         // Notify the parser's listeners and then abort.
         String fatalText = "FATAL ERROR: " + errorCode.toString();

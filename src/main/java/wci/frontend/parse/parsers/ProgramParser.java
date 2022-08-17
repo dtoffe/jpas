@@ -1,15 +1,15 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import java.util.EnumSet;
 
 import wci.frontend.*;
 import wci.intermediate.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 
 /**
@@ -26,13 +26,13 @@ public class ProgramParser extends DeclarationsParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public ProgramParser(PascalParserTD parent)
+    public ProgramParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set to start a program.
-    static final EnumSet<PascalTokenType> PROGRAM_START_SET =
+    static final EnumSet<TokenType> PROGRAM_START_SET =
         EnumSet.of(PROGRAM, SEMICOLON);
     static {
         PROGRAM_START_SET.addAll(DeclarationsParser.DECLARATION_START_SET);

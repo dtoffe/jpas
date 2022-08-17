@@ -7,7 +7,7 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.backend.compiler.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
+import static wci.frontend.scan.TokenType.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;

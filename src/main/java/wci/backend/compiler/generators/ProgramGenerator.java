@@ -38,7 +38,7 @@ public class ProgramGenerator extends CodeGenerator
      * @param node the root node of the program.
      */
     public void generate(ICodeNode node)
-        throws PascalCompilerException
+        throws CompilerException
     {
         SymTabEntry programId = symTabStack.getProgramId();
 
@@ -107,7 +107,7 @@ public class ProgramGenerator extends CodeGenerator
      * Generate code for any nested procedures and functions.
      */
     private void generateRoutines()
-        throws PascalCompilerException
+        throws CompilerException
     {
         DeclaredRoutineGenerator declaredRoutineGenerator =
             new DeclaredRoutineGenerator(this);
@@ -124,7 +124,7 @@ public class ProgramGenerator extends CodeGenerator
      * Generate code for the program body as the main method.
      */
     private void generateMainMethod()
-        throws PascalCompilerException
+        throws CompilerException
     {
         emitBlankLine();
         emitDirective(METHOD_PUBLIC_STATIC, "main([Ljava/lang/String;)V");
@@ -167,7 +167,7 @@ public class ProgramGenerator extends CodeGenerator
      * Generate code for the main method.
      */
     private void generateMainMethodCode()
-        throws PascalCompilerException
+        throws CompilerException
     {
         ICode iCode = (ICode) programId.getAttribute(ROUTINE_ICODE);
         ICodeNode root = iCode.getRoot();

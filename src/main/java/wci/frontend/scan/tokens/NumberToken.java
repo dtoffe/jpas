@@ -1,10 +1,10 @@
 package wci.frontend.scan.tokens;
 
-import wci.frontend.scan.PascalToken;
+import wci.frontend.scan.Token;
 import wci.frontend.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 
 /**
  * <h1>PascalNumberToken</h1>
@@ -14,7 +14,7 @@ import static wci.frontend.PascalErrorCode.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class PascalNumberToken extends PascalToken
+public class NumberToken extends Token
 {
     private static final int MAX_EXPONENT = 37;
 
@@ -23,7 +23,7 @@ public class PascalNumberToken extends PascalToken
      * @param source the source from where to fetch the token's characters.
      * @throws Exception if an error occurred.
      */
-    public PascalNumberToken(Source source)
+    public NumberToken(Source source)
         throws Exception
     {
         super(source);

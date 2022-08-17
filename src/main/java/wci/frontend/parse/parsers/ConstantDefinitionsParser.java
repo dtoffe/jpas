@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
@@ -33,24 +33,24 @@ public class ConstantDefinitionsParser extends DeclarationsParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public ConstantDefinitionsParser(PascalParserTD parent)
+    public ConstantDefinitionsParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for a constant identifier.
-    private static final EnumSet<PascalTokenType> IDENTIFIER_SET =
+    private static final EnumSet<TokenType> IDENTIFIER_SET =
         DeclarationsParser.TYPE_START_SET.clone();
     static {
         IDENTIFIER_SET.add(IDENTIFIER);
     }
 
     // Synchronization set for starting a constant.
-    static final EnumSet<PascalTokenType> CONSTANT_START_SET =
+    static final EnumSet<TokenType> CONSTANT_START_SET =
         EnumSet.of(IDENTIFIER, INTEGER, REAL, PLUS, MINUS, STRING, SEMICOLON);
 
     // Synchronization set for the = token.
-    private static final EnumSet<PascalTokenType> EQUALS_SET =
+    private static final EnumSet<TokenType> EQUALS_SET =
         CONSTANT_START_SET.clone();
     static {
         EQUALS_SET.add(EQUALS);
@@ -58,7 +58,7 @@ public class ConstantDefinitionsParser extends DeclarationsParser
     }
 
     // Synchronization set for the start of the next definition or declaration.
-    private static final EnumSet<PascalTokenType> NEXT_START_SET =
+    private static final EnumSet<TokenType> NEXT_START_SET =
         DeclarationsParser.TYPE_START_SET.clone();
     static {
         NEXT_START_SET.add(SEMICOLON);
@@ -166,7 +166,7 @@ public class ConstantDefinitionsParser extends DeclarationsParser
         }
 
         // Parse the constant.
-        switch ((PascalTokenType) token.getType()) {
+        switch ((TokenType) token.getType()) {
 
             case IDENTIFIER: {
                 return parseIdentifierConstant(token, sign);

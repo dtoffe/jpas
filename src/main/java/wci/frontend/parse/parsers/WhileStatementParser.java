@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import java.util.EnumSet;
 
@@ -11,8 +11,8 @@ import wci.intermediate.icodeimpl.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 
 /**
@@ -29,13 +29,13 @@ public class WhileStatementParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public WhileStatementParser(PascalParserTD parent)
+    public WhileStatementParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for DO.
-    private static final EnumSet<PascalTokenType> DO_SET =
+    private static final EnumSet<TokenType> DO_SET =
         StatementParser.STMT_START_SET.clone();
     static {
         DO_SET.add(DO);

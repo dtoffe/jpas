@@ -1,12 +1,12 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.*;
 import wci.intermediate.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 
@@ -24,7 +24,7 @@ public class CompoundStatementParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public CompoundStatementParser(PascalParserTD parent)
+    public CompoundStatementParser(TopDownParser parent)
     {
         super(parent);
     }

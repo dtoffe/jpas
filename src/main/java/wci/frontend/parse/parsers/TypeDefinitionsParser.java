@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ import wci.frontend.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.TYPE;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
@@ -32,20 +32,20 @@ public class TypeDefinitionsParser extends DeclarationsParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public TypeDefinitionsParser(PascalParserTD parent)
+    public TypeDefinitionsParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for a type identifier.
-    private static final EnumSet<PascalTokenType> IDENTIFIER_SET =
+    private static final EnumSet<TokenType> IDENTIFIER_SET =
         DeclarationsParser.VAR_START_SET.clone();
     static {
         IDENTIFIER_SET.add(IDENTIFIER);
     }
 
     // Synchronization set for the = token.
-    private static final EnumSet<PascalTokenType> EQUALS_SET =
+    private static final EnumSet<TokenType> EQUALS_SET =
         ConstantDefinitionsParser.CONSTANT_START_SET.clone();
     static {
         EQUALS_SET.add(EQUALS);
@@ -53,11 +53,11 @@ public class TypeDefinitionsParser extends DeclarationsParser
     }
 
     // Synchronization set for what follows a definition or declaration.
-    private static final EnumSet<PascalTokenType> FOLLOW_SET =
+    private static final EnumSet<TokenType> FOLLOW_SET =
         EnumSet.of(SEMICOLON);
 
     // Synchronization set for the start of the next definition or declaration.
-    private static final EnumSet<PascalTokenType> NEXT_START_SET =
+    private static final EnumSet<TokenType> NEXT_START_SET =
         DeclarationsParser.VAR_START_SET.clone();
     static {
         NEXT_START_SET.add(SEMICOLON);

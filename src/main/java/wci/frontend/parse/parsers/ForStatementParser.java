@@ -1,7 +1,7 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.PascalTokenType;
-import wci.frontend.parse.PascalParserTD;
+import wci.frontend.scan.TokenType;
+import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
 import java.util.EnumSet;
@@ -11,8 +11,8 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.PascalTokenType.*;
-import static wci.frontend.PascalErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.frontend.ErrorCode.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.ENUMERATION;
@@ -31,13 +31,13 @@ public class ForStatementParser extends StatementParser
      * Constructor.
      * @param parent the parent parser.
      */
-    public ForStatementParser(PascalParserTD parent)
+    public ForStatementParser(TopDownParser parent)
     {
         super(parent);
     }
 
     // Synchronization set for TO or DOWNTO.
-    private static final EnumSet<PascalTokenType> TO_DOWNTO_SET =
+    private static final EnumSet<TokenType> TO_DOWNTO_SET =
         ExpressionParser.EXPR_START_SET.clone();
     static {
         TO_DOWNTO_SET.add(TO);
@@ -46,7 +46,7 @@ public class ForStatementParser extends StatementParser
     }
 
     // Synchronization set for DO.
-    private static final EnumSet<PascalTokenType> DO_SET =
+    private static final EnumSet<TokenType> DO_SET =
         StatementParser.STMT_START_SET.clone();
     static {
         DO_SET.add(DO);

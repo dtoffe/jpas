@@ -1,19 +1,16 @@
 package wci.frontend.scan;
 
 import wci.frontend.scan.tokens.EofToken;
-import wci.frontend.scan.tokens.SpecialSymbolToken;
 import wci.frontend.scan.tokens.ErrorToken;
+import wci.frontend.scan.tokens.NumberToken;
+import wci.frontend.scan.tokens.SpecialSymbolToken;
 import wci.frontend.scan.tokens.StringToken;
 import wci.frontend.scan.tokens.WordToken;
-import wci.frontend.scan.tokens.NumberToken;
-import wci.frontend.scan.TokenType;
-import wci.frontend.scan.Scanner;
-import wci.frontend.scan.Token;
+
 import wci.frontend.*;
 
-import static wci.frontend.Source.EOF;
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
+import static wci.frontend.Source.EOF;
 
 /**
  * <h1>PascalScanner</h1>
@@ -39,6 +36,7 @@ public class HandCodedScanner extends Scanner
      * @return the next token.
      * @throws Exception if an error occurred.
      */
+    @Override
     protected Token extractToken()
         throws Exception
     {

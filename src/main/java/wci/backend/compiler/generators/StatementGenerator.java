@@ -1,16 +1,10 @@
 package wci.backend.compiler.generators;
 
+import wci.backend.compiler.*;
 import wci.intermediate.*;
 import wci.intermediate.icodeimpl.*;
-import wci.backend.compiler.*;
-import wci.message.*;
 
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
-import static wci.backend.compiler.Directive.*;
-import static wci.message.MessageType.*;
 
 /**
  * <h1>StatementExecutor</h1>
@@ -24,7 +18,7 @@ public class StatementGenerator extends CodeGenerator
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public StatementGenerator(CodeGenerator parent)
     {
@@ -36,6 +30,7 @@ public class StatementGenerator extends CodeGenerator
      * To be overridden by the specialized statement executor subclasses.
      * @param node the root node of the statement.
      */
+    @Override
     public void generate(ICodeNode node)
         throws CompilerException
     {

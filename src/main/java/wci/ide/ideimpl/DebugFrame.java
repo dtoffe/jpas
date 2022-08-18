@@ -1,11 +1,12 @@
 package wci.ide.ideimpl;
 
+import java.awt.BorderLayout;
+
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import java.awt.BorderLayout;
 
 import wci.ide.IDEControl;
 
@@ -91,6 +92,7 @@ public class DebugFrame
         // Mouse click listener for the listing.
         listing.addMouseListener(new MouseAdapter()
         {
+            @Override
             public void mouseClicked(MouseEvent event)
             {
                 if (programRunning) {
@@ -366,6 +368,7 @@ public class DebugFrame
      * Button event dispatcher.
      * @param event the button event.
      */
+    @Override
     public void actionPerformed(ActionEvent event)
     {
         Object button = event.getSource();
@@ -487,6 +490,7 @@ public class DebugFrame
      */
     private class AutoStepper extends Thread
     {
+        @Override
         public void run()
         {
             // Loop to perform a single-step action for each command prompt
@@ -600,6 +604,7 @@ public class DebugFrame
          * @param cellHasFocus true if has focus, else false.
          * @return the renderer component.
          */
+        @Override
         public Component getListCellRendererComponent(JList list,
                                                       Object value,
                                                       int index,

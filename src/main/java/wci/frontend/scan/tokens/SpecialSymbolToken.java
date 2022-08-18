@@ -1,10 +1,11 @@
 package wci.frontend.scan.tokens;
 
 import wci.frontend.scan.Token;
+
 import wci.frontend.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
 
 /**
  * <h1>PascalSpecialSymbolToken</h1>
@@ -31,6 +32,7 @@ public class SpecialSymbolToken extends Token
      * Extract a Pascal special symbol token from the source.
      * @throws Exception if an error occurred.
      */
+    @Override
     protected void extract()
         throws Exception
     {

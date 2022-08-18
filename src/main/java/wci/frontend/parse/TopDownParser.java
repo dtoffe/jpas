@@ -1,23 +1,17 @@
 package wci.frontend.parse;
 
-import wci.frontend.scan.tokens.EofToken;
-import wci.frontend.parse.parsers.ProgramParser;
-import wci.frontend.parse.Parser;
-import wci.frontend.scan.Scanner;
-import wci.frontend.scan.Token;
 import java.util.EnumSet;
 
-import wci.frontend.*;
 import wci.frontend.ErrorHandler;
-import wci.intermediate.*;
+import wci.frontend.parse.parsers.ProgramParser;
+import wci.frontend.scan.Scanner;
+import wci.frontend.scan.Token;
+import wci.frontend.scan.tokens.EofToken;
+
 import wci.intermediate.symtabimpl.*;
-import wci.intermediate.typeimpl.*;
 import wci.message.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.message.MessageType.PARSER_SUMMARY;
 
 /**
@@ -64,6 +58,7 @@ public class TopDownParser extends Parser
      * and the intermediate code.
      * @throws Exception if an error occurred.
      */
+    @Override
     public void parse()
         throws Exception
     {
@@ -94,6 +89,7 @@ public class TopDownParser extends Parser
      * Return the number of syntax errors found by the parser.
      * @return the error count.
      */
+    @Override
     public int getErrorCount()
     {
         return errorHandler.getErrorCount();

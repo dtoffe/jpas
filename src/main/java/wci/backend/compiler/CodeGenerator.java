@@ -8,13 +8,11 @@ import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.message.*;
 
+import static wci.backend.compiler.Instruction.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.backend.compiler.Instruction.*;
 import static wci.message.MessageType.COMPILER_SUMMARY;
 
 /**
@@ -42,7 +40,7 @@ public class CodeGenerator extends Backend
 
     /**
      * Constructor for subclasses.
-     * @param the parent code generator.
+     * @param parent the parent code generator.
      */
     public CodeGenerator(CodeGenerator parent)
     {
@@ -58,6 +56,7 @@ public class CodeGenerator extends Backend
      * @param symTabStack the symbol table stack.
      * @throws Exception if an error occurred.
      */
+    @Override
     public void process(ICode iCode, SymTabStack symTabStack)
         throws Exception
     {
@@ -130,6 +129,7 @@ public class CodeGenerator extends Backend
 
     /**
      * Emit a label preceded by an integer value for a switch table.
+     * @param value the integer value
      * @param label the label.
      */
     protected void emitLabel(int value, Label label)
@@ -140,6 +140,7 @@ public class CodeGenerator extends Backend
 
     /**
      * Emit a label preceded by a string value for a switch table.
+     * @param value the string value
      * @param label the label.
      */
     protected void emitLabel(String value, Label label)
@@ -186,7 +187,8 @@ public class CodeGenerator extends Backend
     /**
      * Emit a 2-operand directive.
      * @param directive the directive code.
-     * @param operand the operand.
+     * @param operand1 the 1st operand.
+     * @param operand2 the 2nd operand.
      */
     protected void emitDirective(Directive directive,
                                  String operand1, String operand2)
@@ -200,7 +202,9 @@ public class CodeGenerator extends Backend
     /**
      * Emit a 3-operand directive.
      * @param directive the directive code.
-     * @param operand the operand.
+     * @param operand1 the 1st operand.
+     * @param operand2 the 2nd operand.
+     * @param operand3 the 3rd operand.
      */
     protected void emitDirective(Directive directive,
                                  String operand1, String operand2,

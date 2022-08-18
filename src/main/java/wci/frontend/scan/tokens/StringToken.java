@@ -1,12 +1,12 @@
 package wci.frontend.scan.tokens;
 
 import wci.frontend.scan.Token;
+
 import wci.frontend.*;
 
-import static wci.frontend.Source.EOL;
+import static wci.frontend.ErrorCode.*;
 import static wci.frontend.Source.EOF;
 import static wci.frontend.scan.TokenType.*;
-import static wci.frontend.ErrorCode.*;
 
 /**
  * <h1>PascalStringToken</h1>
@@ -33,6 +33,7 @@ public class StringToken extends Token
      * Extract a Pascal string token from the source.
      * @throws Exception if an error occurred.
      */
+    @Override
     protected void extract()
         throws Exception
     {

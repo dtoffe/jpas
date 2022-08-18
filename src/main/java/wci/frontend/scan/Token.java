@@ -1,7 +1,6 @@
 package wci.frontend.scan;
 
 import wci.frontend.Source;
-import wci.frontend.scan.TokenType;
 
 /**
  * <h1>Token</h1>

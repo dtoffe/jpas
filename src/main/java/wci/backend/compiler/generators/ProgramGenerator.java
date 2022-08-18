@@ -2,14 +2,13 @@ package wci.backend.compiler.generators;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
 import wci.backend.compiler.*;
+import wci.intermediate.*;
 
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.backend.compiler.Directive.*;
 import static wci.backend.compiler.Instruction.*;
+import static wci.intermediate.symtabimpl.DefinitionImpl.*;
+import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 
 /**
  * <h1>ProgramGenerator</h1>
@@ -26,7 +25,7 @@ public class ProgramGenerator extends CodeGenerator
 
     /**
      * Constructor.
-     * @param the parent generator.
+     * @param parent the parent generator.
      */
     public ProgramGenerator(CodeGenerator parent)
     {
@@ -37,6 +36,7 @@ public class ProgramGenerator extends CodeGenerator
      * Generate code for the main program.
      * @param node the root node of the program.
      */
+    @Override
     public void generate(ICodeNode node)
         throws CompilerException
     {

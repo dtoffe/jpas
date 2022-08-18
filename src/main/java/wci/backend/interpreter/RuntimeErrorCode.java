@@ -30,6 +30,7 @@ public enum RuntimeErrorCode
         this.message = message;
     }
 
+    @Override
     public String toString()
     {
         return message;

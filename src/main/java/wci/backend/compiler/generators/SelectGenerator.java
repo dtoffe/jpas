@@ -2,18 +2,12 @@ package wci.backend.compiler.generators;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
-import wci.intermediate.icodeimpl.*;
-import wci.intermediate.symtabimpl.*;
 import wci.backend.compiler.*;
+import wci.intermediate.*;
 
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.symtabimpl.DefinitionImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.backend.compiler.Instruction.*;
+import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 
 /**
  * <h1>SelectGenerator</h1>
@@ -27,7 +21,7 @@ public class SelectGenerator extends StatementGenerator
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public SelectGenerator(CodeGenerator parent)
     {
@@ -59,6 +53,7 @@ public class SelectGenerator extends StatementGenerator
      * Generate code for a SELECT statement.
      * @param node the root node of the statement.
      */
+    @Override
     public void generate(ICodeNode node)
         throws CompilerException
     {

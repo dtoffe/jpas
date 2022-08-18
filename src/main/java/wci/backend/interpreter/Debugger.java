@@ -1,16 +1,16 @@
 package wci.backend.interpreter;
 
-import wci.frontend.scan.HandCodedScanner;
-import wci.frontend.scan.TokenType;
-import wci.frontend.scan.Scanner;
-import wci.frontend.scan.Token;
-import wci.frontend.scan.TokenType;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import wci.frontend.*;
+import wci.frontend.scan.HandCodedScanner;
+import wci.frontend.scan.Scanner;
+import wci.frontend.scan.Token;
+import wci.frontend.scan.TokenType;
+
 import wci.backend.*;
+import wci.frontend.*;
 import wci.message.*;
 
 import static wci.frontend.scan.TokenType.*;
@@ -72,6 +72,7 @@ public abstract class Debugger
          * Called by the back end whenever it produces a message.
          * @param message the message.
          */
+        @Override
         public void messageReceived(Message message)
         {
             processMessage(message);
@@ -343,14 +344,14 @@ public abstract class Debugger
     /**
      * Process calling a declared procedure or function.
      * @param lineNumber the current statement line number.
-     * @param name the routine name.
+     * @param routineName the routine name.
      */
     public abstract void callRoutine(Integer lineNumber, String routineName);
 
     /**
      * Process returning from a declared procedure or function.
      * @param lineNumber the current statement line number.
-     * @param name the routine name.
+     * @param routineName the routine name.
      */
     public abstract void returnRoutine(Integer lineNumber, String routineName);
 

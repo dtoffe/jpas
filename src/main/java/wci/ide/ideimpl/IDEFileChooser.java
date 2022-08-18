@@ -1,7 +1,7 @@
 package wci.ide.ideimpl;
 
-import java.io.*;
 import java.awt.*;
+import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
@@ -109,6 +109,7 @@ class IdeFileFilter
         }
     }
 
+    @Override
     public boolean accept(File file)
     {
         if (file.isDirectory()) {
@@ -125,8 +126,10 @@ class IdeFileFilter
         return false;
     }
 
+    @Override
     public String getDescription()
     {
         return description;
     }
+    
 }

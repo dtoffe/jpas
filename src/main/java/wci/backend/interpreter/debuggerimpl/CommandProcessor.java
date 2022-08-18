@@ -2,9 +2,8 @@ package wci.backend.interpreter.debuggerimpl;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
 import wci.backend.interpreter.*;
+import wci.intermediate.*;
 import wci.message.*;
 
 import static wci.frontend.scan.TokenType.SEMICOLON;

@@ -40,6 +40,7 @@ public class ICodeNodeImpl
      * Getter.
      * @return the node type.
      */
+    @Override
     public ICodeNodeType getType()
     {
         return type;
@@ -49,6 +50,7 @@ public class ICodeNodeImpl
      * Return the parent of this node.
      * @return the parent node.
      */
+    @Override
     public ICodeNode getParent()
     {
         return parent;
@@ -58,6 +60,7 @@ public class ICodeNodeImpl
      * Set the type specification of this node.
      * @param typeSpec the type sprcification to set.
      */
+    @Override
     public void setTypeSpec(TypeSpec typeSpec)
     {
         this.typeSpec = typeSpec;
@@ -67,6 +70,7 @@ public class ICodeNodeImpl
      * Return the type specification of this node.
      * @return the type specification.
      */
+    @Override
     public TypeSpec getTypeSpec()
     {
         return typeSpec;
@@ -77,6 +81,7 @@ public class ICodeNodeImpl
      * @param node the child node. Not added if null.
      * @return the child node.
      */
+    @Override
     public ICodeNode addChild(ICodeNode node)
     {
         if (node != null) {
@@ -91,6 +96,7 @@ public class ICodeNodeImpl
      * Return an array list of this node's children.
      * @return the array list of children.
      */
+    @Override
     public ArrayList<ICodeNode> getChildren()
     {
         return children;
@@ -101,6 +107,7 @@ public class ICodeNodeImpl
      * @param key the attribute key.
      * @param value the attribute value.
      */
+    @Override
     public void setAttribute(ICodeKey key, Object value)
     {
         put(key, value);
@@ -111,6 +118,7 @@ public class ICodeNodeImpl
      * @param key the attribute key.
      * @return the attribute value.
      */
+    @Override
     public Object getAttribute(ICodeKey key)
     {
         return get(key);
@@ -120,6 +128,7 @@ public class ICodeNodeImpl
      * Make a copy of this node.
      * @return the copy.
      */
+    @Override
     public ICodeNode copy()
     {
         // Create a copy with the same type and type specification.
@@ -139,6 +148,7 @@ public class ICodeNodeImpl
         return copy;
     }
 
+    @Override
     public String toString()
     {
         return type.toString();

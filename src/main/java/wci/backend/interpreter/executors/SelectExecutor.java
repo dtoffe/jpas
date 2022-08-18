@@ -3,12 +3,11 @@ package wci.backend.interpreter.executors;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import wci.intermediate.*;
 import wci.backend.interpreter.*;
+import wci.intermediate.*;
 
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
-import static wci.backend.interpreter.RuntimeErrorCode.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 
 /**
  * <h1>SelectExecutor</h1>
@@ -22,7 +21,7 @@ public class SelectExecutor extends StatementExecutor
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public SelectExecutor(Executor parent)
     {
@@ -41,6 +40,7 @@ public class SelectExecutor extends StatementExecutor
      * @param node the root node of the statement.
      * @return null.
      */
+    @Override
     public Object execute(ICodeNode node)
     {
         // Is there already an entry for this SELECT node in the

@@ -1,12 +1,12 @@
 package wci;
 
-import wci.frontend.parse.Parser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import wci.frontend.*;
-import wci.intermediate.*;
 import wci.backend.*;
+import wci.frontend.*;
+import wci.frontend.parse.Parser;
+import wci.intermediate.*;
 import wci.message.*;
 import wci.util.*;
 
@@ -145,6 +145,7 @@ public class JPas
          * Called by the source whenever it produces a message.
          * @param message the message.
          */
+        @Override
         public void messageReceived(Message message)
         {
             MessageType type = message.getType();
@@ -180,6 +181,7 @@ public class JPas
          * Called by the parser whenever it produces a message.
          * @param message the message.
          */
+        @Override
         public void messageReceived(Message message)
         {
             MessageType type = message.getType();
@@ -262,6 +264,7 @@ public class JPas
          * Called by the back end whenever it produces a message.
          * @param message the message.
          */
+        @Override
         public void messageReceived(Message message)
         {
             MessageType type = message.getType();

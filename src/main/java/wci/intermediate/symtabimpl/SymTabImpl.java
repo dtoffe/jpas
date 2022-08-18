@@ -38,6 +38,7 @@ public class SymTabImpl
      * Getter.
      * @return the scope nesting level of this entry.
      */
+    @Override
     public int getNestingLevel()
     {
         return nestingLevel;
@@ -48,6 +49,7 @@ public class SymTabImpl
      * @param name the name of the entry.
      * @return the new entry.
      */
+    @Override
     public SymTabEntry enter(String name)
     {
         SymTabEntry entry = SymTabFactory.createSymTabEntry(name, this);
@@ -61,6 +63,7 @@ public class SymTabImpl
      * @param name the name of the entry.
      * @return the entry, or null if it does not exist.
      */
+    @Override
     public SymTabEntry lookup(String name)
     {
         return get(name);
@@ -69,6 +72,7 @@ public class SymTabImpl
     /**
      * @return a list of symbol table entries sorted by name.
      */
+    @Override
     public ArrayList<SymTabEntry> sortedEntries()
     {
         Collection<SymTabEntry> entries = values();
@@ -86,6 +90,7 @@ public class SymTabImpl
     /**
      * @return the next local variables array slot number.
      */
+    @Override
     public int nextSlotNumber()
     {
         maxSlotNumber = ++slotNumber;
@@ -95,6 +100,7 @@ public class SymTabImpl
     /**
      * @return the maximum local variables array slot number.
      */
+    @Override
     public int maxSlotNumber()
     {
         return maxSlotNumber;

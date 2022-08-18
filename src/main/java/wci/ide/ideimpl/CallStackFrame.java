@@ -192,6 +192,7 @@ public class CallStackFrame
      * Button event dispatcher.
      * @param event the button event.
      */
+    @Override
     public void actionPerformed(ActionEvent event)
     {
         Object button = event.getSource();
@@ -214,6 +215,7 @@ public class CallStackFrame
      * Tree selection event handler.
      * @param event the selection event.
      */
+    @Override
     public void valueChanged(TreeSelectionEvent event)
     {
         TreePath path = event.getPath();
@@ -256,6 +258,7 @@ public class CallStackFrame
         /**
          * @return the node label.
          */
+        @Override
         public String toString()
         {
             return level + " " + header;
@@ -284,6 +287,7 @@ public class CallStackFrame
         /**
          * @return the node label.
          */
+        @Override
         public String toString()
         {
             return name + ": " + value;

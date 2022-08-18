@@ -1,22 +1,21 @@
 package wci.frontend.parse.parsers;
 
+import java.util.EnumSet;
+
 import wci.frontend.ErrorCode;
-import wci.frontend.scan.tokens.EofToken;
-import wci.frontend.scan.TokenType;
 import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
-import java.util.EnumSet;
+import wci.frontend.scan.tokens.EofToken;
 
-import wci.frontend.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 
 /**
  * <h1>StatementParser</h1>

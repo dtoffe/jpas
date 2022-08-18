@@ -3,11 +3,10 @@ package wci.intermediate.symtabimpl;
 import java.util.ArrayList;
 
 import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
 
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
+import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 
@@ -60,7 +59,7 @@ public class Predefined
 
     /**
      * Initialize a symbol table stack with predefined identifiers.
-     * @param symTab the symbol table stack to initialize.
+     * @param symTabStack the symbol table stack to initialize.
      */
     public static void initialize(SymTabStack symTabStack)
     {

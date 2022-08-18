@@ -56,6 +56,7 @@ public class TypeSpecImpl
      * Getter
      * @return the type form.
      */
+    @Override
     public TypeForm getForm()
     {
         return form;
@@ -65,6 +66,7 @@ public class TypeSpecImpl
      * Setter.
      * @param identifier the type identifier (symbol table entry).
      */
+    @Override
     public void setIdentifier(SymTabEntry identifier)
     {
         this.identifier = identifier;
@@ -74,6 +76,7 @@ public class TypeSpecImpl
      * Getter.
      * @return the type identifier (symbol table entry).
      */
+    @Override
     public SymTabEntry getIdentifier()
     {
         return identifier;
@@ -84,6 +87,7 @@ public class TypeSpecImpl
      * @param key the attribute key.
      * @param value the attribute value.
      */
+    @Override
     public void setAttribute(TypeKey key, Object value)
     {
         this.put(key, value);
@@ -94,6 +98,7 @@ public class TypeSpecImpl
      * @param key the attribute key.
      * @return the attribute value.
      */
+    @Override
     public Object getAttribute(TypeKey key)
     {
         return this.get(key);
@@ -102,6 +107,7 @@ public class TypeSpecImpl
     /**
      * @return true if this is a Pascal string type.
      */
+    @Override
     public boolean isPascalString()
     {
         if (form == ARRAY) {
@@ -119,6 +125,7 @@ public class TypeSpecImpl
     /**
      * @return the base type of this type.
      */
+    @Override
     public TypeSpec baseType()
     {
         return form == SUBRANGE ? (TypeSpec) getAttribute(SUBRANGE_BASE_TYPE)

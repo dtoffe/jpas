@@ -20,6 +20,7 @@ public class ICodeImpl implements ICode
      * @param node the node to set as root.
      * @return the root node.
      */
+    @Override
     public ICodeNode setRoot(ICodeNode node)
     {
         root = node;
@@ -30,6 +31,7 @@ public class ICodeImpl implements ICode
      * Get the root node.
      * @return the root node.
      */
+    @Override
     public ICodeNode getRoot()
     {
         return root;

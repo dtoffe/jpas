@@ -2,8 +2,8 @@ package wci.backend.interpreter.memoryimpl;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
 import wci.backend.interpreter.*;
+import wci.intermediate.*;
 
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 
@@ -39,6 +39,7 @@ public class ActivationRecordImpl implements ActivationRecord
      * Getter.
      * @return the symbol table entry of the routine's name.
      */
+    @Override
     public SymTabEntry getRoutineId()
     {
         return routineId;
@@ -49,6 +50,7 @@ public class ActivationRecordImpl implements ActivationRecord
      * @param name the name.
      * @return the cell.
      */
+    @Override
     public Cell getCell(String name)
     {
         return memoryMap.getCell(name);
@@ -57,6 +59,7 @@ public class ActivationRecordImpl implements ActivationRecord
     /**
      * @return the list of all the names in the memory map.
      */
+    @Override
     public ArrayList<String> getAllNames()
     {
         return memoryMap.getAllNames();
@@ -66,6 +69,7 @@ public class ActivationRecordImpl implements ActivationRecord
      * Getter.
      * @return the scope nesting level.
      */
+    @Override
     public int getNestingLevel()
     {
         return nestingLevel;
@@ -74,6 +78,7 @@ public class ActivationRecordImpl implements ActivationRecord
     /**
      * @return the activation record to which this record is dynamically linked.
      */
+    @Override
     public ActivationRecord linkedTo()
     {
         return link;
@@ -84,6 +89,7 @@ public class ActivationRecordImpl implements ActivationRecord
      * @param ar the activation record to link to.
      * @return this activation record.
      */
+    @Override
     public ActivationRecord makeLinkTo(ActivationRecord ar)
     {
         link = ar;

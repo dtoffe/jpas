@@ -2,8 +2,8 @@ package wci.backend.compiler.generators;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
 import wci.backend.compiler.*;
+import wci.intermediate.*;
 
 import static wci.backend.compiler.Instruction.*;
 
@@ -19,7 +19,7 @@ public class IfGenerator extends StatementGenerator
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public IfGenerator(CodeGenerator parent)
     {
@@ -30,6 +30,7 @@ public class IfGenerator extends StatementGenerator
      * Generate code for an IF statement.
      * @param node the root node of the statement.
      */
+    @Override
     public void generate(ICodeNode node)
         throws CompilerException
     {

@@ -1,10 +1,8 @@
 package wci.backend.interpreter;
 
-import wci.intermediate.SymTab;
 import wci.backend.interpreter.memoryimpl.*;
+import wci.intermediate.SymTab;
 import wci.intermediate.SymTabEntry;
-
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 
 /**
  * <h1>MemoryFactory</h1>
@@ -46,7 +44,7 @@ public class MemoryFactory
 
     /**
      * Create a memory map from a symbol table.
-     * @param value the value for the cell.
+     * @param symTab the symbol table.
      * @return the new memory map.
      */
     public static MemoryMap createMemoryMap(SymTab symTab)

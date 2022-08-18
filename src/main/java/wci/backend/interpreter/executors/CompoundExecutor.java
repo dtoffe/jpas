@@ -2,8 +2,8 @@ package wci.backend.interpreter.executors;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
 import wci.backend.interpreter.*;
+import wci.intermediate.*;
 
 /**
  * <h1>CompoundExecutor</h1>
@@ -17,7 +17,7 @@ public class CompoundExecutor extends StatementExecutor
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public CompoundExecutor(Executor parent)
     {
@@ -29,6 +29,7 @@ public class CompoundExecutor extends StatementExecutor
      * @param node the root node of the compound statement.
      * @return null.
      */
+    @Override
     public Object execute(ICodeNode node)
     {
         // Loop over the children of the COMPOUND node and execute each child.

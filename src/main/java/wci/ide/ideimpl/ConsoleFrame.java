@@ -110,7 +110,7 @@ public class ConsoleFrame
 
     /**
      * Add output text.
-     * @param line the output text.
+     * @param text the output text.
      */
     public void addToOutput(String text)
     {
@@ -141,6 +141,7 @@ public class ConsoleFrame
      * Button event dispatcher.
      * @param event the button event.
      */
+    @Override
     public void actionPerformed(ActionEvent event)
     {
         Object button = event.getSource();

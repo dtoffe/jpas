@@ -29,6 +29,7 @@ public class RuntimeDisplayImpl
      * @param nestingLevel the nesting level.
      * @return the activation record.
      */
+    @Override
     public ActivationRecord getActivationRecord(int nestingLevel)
     {
         return get(nestingLevel);
@@ -39,6 +40,7 @@ public class RuntimeDisplayImpl
      * @param nestingLevel the nesting level.
      * @param ar the activation record for the routine.
      */
+    @Override
     public void callUpdate(int nestingLevel, ActivationRecord ar)
     {
         // Next higher nesting level: Append a new element at the top.
@@ -57,6 +59,7 @@ public class RuntimeDisplayImpl
      * Update the display for a return from a routine at a given nesting level.
      * @param nestingLevel the nesting level.
      */
+    @Override
     public void returnUpdate(int nestingLevel)
     {
         int topIndex = size() - 1;

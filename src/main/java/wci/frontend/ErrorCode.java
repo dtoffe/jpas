@@ -108,6 +108,7 @@ public enum ErrorCode
     /**
      * @return the message.
      */
+    @Override
     public String toString()
     {
         return message;

@@ -3,20 +3,17 @@ package wci.backend.compiler.generators;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
-import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
-import wci.intermediate.icodeimpl.*;
-import wci.intermediate.typeimpl.*;
 import wci.backend.compiler.*;
+import wci.intermediate.*;
+import wci.intermediate.icodeimpl.*;
+import wci.intermediate.symtabimpl.*;
+import wci.intermediate.typeimpl.*;
 
-import static wci.intermediate.symtabimpl.DefinitionImpl.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.backend.compiler.Instruction.*;
+import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
+import static wci.intermediate.typeimpl.TypeFormImpl.*;
+import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 
 /**
  * <h1>ExpressionGenerator</h1>
@@ -30,7 +27,7 @@ public class ExpressionGenerator extends StatementGenerator
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public ExpressionGenerator(CodeGenerator parent)
     {
@@ -41,6 +38,7 @@ public class ExpressionGenerator extends StatementGenerator
      * Generate code to evaluate an expression.
      * @param node the root intermediate code node of the compound statement.
      */
+    @Override
     public void generate(ICodeNode node)
     {
         ICodeNodeTypeImpl nodeType = (ICodeNodeTypeImpl) node.getType();
@@ -185,6 +183,7 @@ public class ExpressionGenerator extends StatementGenerator
      * Generate code to load a variable's address (structured) or
      * value (scalar).
      * @param variableNode the variable node.
+     * @return 
      */
     protected TypeSpec generateLoadVariable(ICodeNode variableNode)
     {

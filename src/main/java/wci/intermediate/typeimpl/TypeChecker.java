@@ -2,10 +2,8 @@ package wci.intermediate.typeimpl;
 
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
-import wci.intermediate.typeimpl.*;
 
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 
 /**
  * <h1>TypeChecker</h1>

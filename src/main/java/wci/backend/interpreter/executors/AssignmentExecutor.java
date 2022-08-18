@@ -1,18 +1,13 @@
 package wci.backend.interpreter.executors;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import wci.intermediate.*;
-import wci.intermediate.icodeimpl.*;
-import wci.intermediate.symtabimpl.*;
 import wci.backend.interpreter.*;
-import wci.message.*;
+import wci.intermediate.*;
+import wci.intermediate.symtabimpl.*;
 
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 
 /**
  * <h1>AssignmentExecutor</h1>
@@ -26,7 +21,7 @@ public class AssignmentExecutor extends StatementExecutor
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public AssignmentExecutor(Executor parent)
     {
@@ -38,6 +33,7 @@ public class AssignmentExecutor extends StatementExecutor
      * @param node the root node of the statement.
      * @return null.
      */
+    @Override
     public Object execute(ICodeNode node)
     {
         // The ASSIGN node's children are the target variable

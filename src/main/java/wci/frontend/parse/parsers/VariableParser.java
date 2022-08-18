@@ -1,30 +1,28 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.TokenType;
+import java.util.EnumSet;
+
 import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
-import java.util.EnumSet;
 
-import wci.frontend.*;
 import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
 import wci.intermediate.icodeimpl.*;
+import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
+import static wci.frontend.scan.TokenType.*;
+import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.FUNCTION;
 import static wci.intermediate.symtabimpl.DefinitionImpl.UNDEFINED;
-import static wci.intermediate.symtabimpl.DefinitionImpl.VARIABLE;
 import static wci.intermediate.symtabimpl.DefinitionImpl.VALUE_PARM;
+import static wci.intermediate.symtabimpl.DefinitionImpl.VARIABLE;
 import static wci.intermediate.symtabimpl.DefinitionImpl.VAR_PARM;
 import static wci.intermediate.typeimpl.TypeFormImpl.ARRAY;
 import static wci.intermediate.typeimpl.TypeFormImpl.RECORD;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 
 /**
  * <h1>VariableParser</h1>
@@ -58,6 +56,7 @@ public class VariableParser extends StatementParser
      * @return the root node of the generated parse tree.
      * @throws Exception if an error occurred.
      */
+    @Override
     public ICodeNode parse(Token token)
         throws Exception
     {

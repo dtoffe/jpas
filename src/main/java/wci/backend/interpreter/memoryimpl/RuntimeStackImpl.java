@@ -29,6 +29,7 @@ public class RuntimeStackImpl
     /**
      * @return an array list of the activation records on the stack.
      */
+    @Override
     public ArrayList<ActivationRecord> records()
     {
         return this;
@@ -39,6 +40,7 @@ public class RuntimeStackImpl
      * @param nestingLevel the nesting level.
      * @return the activation record.
      */
+    @Override
     public ActivationRecord getTopmost(int nestingLevel)
     {
         return display.getActivationRecord(nestingLevel);
@@ -47,6 +49,7 @@ public class RuntimeStackImpl
     /**
      * @return the current nesting level.
      */
+    @Override
     public int currentNestingLevel()
     {
         int topIndex = size() - 1;
@@ -57,6 +60,7 @@ public class RuntimeStackImpl
      * Push an activation record onto the stack for a routine being called.
      * @param ar the activation record to push.
      */
+    @Override
     public void push(ActivationRecord ar)
     {
         int nestingLevel = ar.getNestingLevel();
@@ -68,6 +72,7 @@ public class RuntimeStackImpl
     /**
      * Pop an activation record off the stack for a returning routine.
      */
+    @Override
     public void pop()
     {
         display.returnUpdate(currentNestingLevel());

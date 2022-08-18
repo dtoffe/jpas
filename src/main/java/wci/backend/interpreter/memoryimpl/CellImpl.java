@@ -27,6 +27,7 @@ public class CellImpl implements Cell
      * Set a new value into the cell.
      * @param newValue the new value.
      */
+    @Override
     public void setValue(Object newValue)
     {
         value = newValue;
@@ -35,6 +36,7 @@ public class CellImpl implements Cell
     /**
      * @return the value in the cell.
      */
+    @Override
     public Object getValue()
     {
         return value;

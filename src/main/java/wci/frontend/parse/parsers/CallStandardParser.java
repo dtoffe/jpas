@@ -2,16 +2,13 @@ package wci.frontend.parse.parsers;
 
 import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
-import wci.frontend.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
-import wci.intermediate.icodeimpl.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
+import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 
 public class CallStandardParser extends CallParser
@@ -31,6 +28,7 @@ public class CallStandardParser extends CallParser
      * @return the root node of the generated parse tree.
      * @throws Exception if an error occurred.
      */
+    @Override
     public ICodeNode parse(Token token)
         throws Exception
     {

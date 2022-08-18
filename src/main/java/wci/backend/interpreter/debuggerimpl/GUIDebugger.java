@@ -2,9 +2,9 @@ package wci.backend.interpreter.debuggerimpl;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
 import wci.backend.*;
 import wci.backend.interpreter.*;
+import wci.intermediate.*;
 import wci.message.Message;
 
 import static wci.ide.IDEControl.*;
@@ -36,6 +36,7 @@ public class GUIDebugger extends Debugger
      * Process a message from the back end.
      * @param message the message.
      */
+    @Override
     public void processMessage(Message message)
     {
         commandProcessor.processMessage(message);
@@ -44,12 +45,14 @@ public class GUIDebugger extends Debugger
     /**
      * Display a prompt for a debugger command.
      */
+    @Override
     public void promptForCommand() {}
 
     /**
      * Parse a debugger command.
      * @return true to parse another command immediately, else false.
      */
+    @Override
     public boolean parseCommand()
     {
         return commandProcessor.parseCommand();
@@ -59,6 +62,7 @@ public class GUIDebugger extends Debugger
      * Process a source statement.
      * @param lineNumber the statement line number.
      */
+    @Override
     public void atStatement(Integer lineNumber)
     {
         System.out.println(DEBUGGER_AT_TAG + lineNumber);
@@ -68,6 +72,7 @@ public class GUIDebugger extends Debugger
      * Process a breakpoint at a statement.
      * @param lineNumber the statement line number.
      */
+    @Override
     public void atBreakpoint(Integer lineNumber)
     {
         System.out.println(DEBUGGER_BREAK_TAG + lineNumber);
@@ -79,6 +84,7 @@ public class GUIDebugger extends Debugger
      * @param name the variable name.
      * @param value the variable's value.
      */
+    @Override
     public void atWatchpointValue(Integer lineNumber,
                                   String name, Object value)
     {
@@ -90,6 +96,7 @@ public class GUIDebugger extends Debugger
      * @param name the variable name.
      * @param value the new value.
      */
+    @Override
     public void atWatchpointAssignment(Integer lineNumber,
                                        String name, Object value)
     {
@@ -98,8 +105,9 @@ public class GUIDebugger extends Debugger
     /**
      * Process calling a declared procedure or function.
      * @param lineNumber the current statement line number.
-     * @param name the routine name.
+     * @param routineName the routine name.
      */
+    @Override
     public void callRoutine(Integer lineNumber, String routineName)
     {
     }
@@ -107,8 +115,9 @@ public class GUIDebugger extends Debugger
     /**
      * Process returning from a declared procedure or function.
      * @param lineNumber the current statement line number.
-     * @param name the routine name.
+     * @param routineName the routine name.
      */
+    @Override
     public void returnRoutine(Integer lineNumber, String routineName)
     {
     }
@@ -117,6 +126,7 @@ public class GUIDebugger extends Debugger
      * Display a value.
      * @param valueString the value string.
      */
+    @Override
     public void displayValue(String valueString)
     {
         System.out.println(valueString);
@@ -126,6 +136,7 @@ public class GUIDebugger extends Debugger
      * Display the call stack.
      * @param stack the list of elements of the call stack.
      */
+    @Override
     public void displayCallStack(ArrayList stack)
     {
         // Call stack header.
@@ -161,6 +172,7 @@ public class GUIDebugger extends Debugger
     /**
      * Terminate execution of the source program.
      */
+    @Override
     public void quit()
     {
         System.out.println("!INTERPRETER:Program terminated.");
@@ -171,6 +183,7 @@ public class GUIDebugger extends Debugger
      * Handle a debugger command error.
      * @param errorMessage the error message.
      */
+    @Override
     public void commandError(String errorMessage)
     {
         runtimeError(errorMessage, 0);
@@ -181,6 +194,7 @@ public class GUIDebugger extends Debugger
      * @param errorMessage the error message.
      * @param lineNumber the source line number where the error occurred.
      */
+    @Override
     public void runtimeError(String errorMessage, Integer lineNumber)
     {
         System.out.print("*** RUNTIME ERROR");

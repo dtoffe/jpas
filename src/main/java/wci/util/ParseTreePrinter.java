@@ -1,16 +1,15 @@
 package wci.util;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.io.PrintStream;
 
 import wci.intermediate.*;
 import wci.intermediate.icodeimpl.*;
 
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 
 /**
  * <h1>ParseTreePrinter</h1>

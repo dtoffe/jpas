@@ -64,6 +64,7 @@ public abstract class Backend implements MessageProducer
      * Notify listeners after setting the message.
      * @param message the message to set.
      */
+    @Override
     public void sendMessage(Message message)
     {
         messageHandler.sendMessage(message);
@@ -73,6 +74,7 @@ public abstract class Backend implements MessageProducer
      * Add a parser message listener.
      * @param listener the message listener to add.
      */
+    @Override
     public void addMessageListener(MessageListener listener)
     {
         messageHandler.addListener(listener);
@@ -82,6 +84,7 @@ public abstract class Backend implements MessageProducer
      * Remove a parser message listener.
      * @param listener the message listener to remove.
      */
+    @Override
     public void removeMessageListener(MessageListener listener)
     {
         messageHandler.removeListener(listener);

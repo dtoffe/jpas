@@ -1,9 +1,9 @@
 package wci.frontend;
 
 import wci.frontend.parse.Parser;
-import wci.frontend.scan.Scanner;
 import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.HandCodedScanner;
+import wci.frontend.scan.Scanner;
 
 /**
  * <h1>FrontendFactory</h1>

@@ -38,6 +38,7 @@ public enum Directive
     /**
      * @return the string that is emitted.
      */
+    @Override
     public String toString()
     {
         return text;

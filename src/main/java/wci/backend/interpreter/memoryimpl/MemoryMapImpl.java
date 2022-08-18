@@ -5,11 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import wci.backend.interpreter.*;
 import wci.intermediate.*;
 import wci.intermediate.typeimpl.*;
-import wci.backend.interpreter.*;
 
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
@@ -64,6 +63,7 @@ public class MemoryMapImpl
      * @param name the name.
      * @return the cell.
      */
+    @Override
     public Cell getCell(String name)
     {
         return get(name);
@@ -72,6 +72,7 @@ public class MemoryMapImpl
     /**
      * @return the list of all the names.
      */
+    @Override
     public ArrayList<String> getAllNames()
     {
         ArrayList<String> list = new ArrayList<String>();

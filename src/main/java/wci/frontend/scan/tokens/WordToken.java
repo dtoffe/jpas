@@ -1,7 +1,8 @@
 package wci.frontend.scan.tokens;
 
-import wci.frontend.scan.TokenType;
 import wci.frontend.scan.Token;
+import wci.frontend.scan.TokenType;
+
 import wci.frontend.*;
 
 import static wci.frontend.scan.TokenType.*;
@@ -31,6 +32,7 @@ public class WordToken extends Token
      * Extract a Pascal word token from the source.
      * @throws Exception if an error occurred.
      */
+    @Override
     protected void extract()
         throws Exception
     {

@@ -3,9 +3,6 @@ package wci.ide;
 import java.io.*;
 import java.awt.*;
 
-import wci.ide.IDEControl;
-
-import static wci.backend.interpreter.Debugger.*;
 import static wci.ide.IDEControl.*;
 
 /**
@@ -44,6 +41,7 @@ public class DebuggerProcess extends Thread
     /**
      * Run the procecess.
      */
+    @Override
     public void run()
     {
         try {

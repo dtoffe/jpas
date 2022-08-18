@@ -42,6 +42,7 @@ public enum DefinitionImpl implements Definition
      * Getter.
      * @return the text of the definition code.
      */
+    @Override
     public String getText()
     {
         return text;

@@ -61,6 +61,7 @@ public enum Instruction
     /**
      * @return the string that is emitted.
      */
+    @Override
     public String toString()
     {
         return super.toString().toLowerCase();

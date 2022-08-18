@@ -34,6 +34,7 @@ public class Label
     /**
      * @return the label string.
      */
+    @Override
     public String toString()
     {
         return this.label;

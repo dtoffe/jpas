@@ -1,22 +1,19 @@
 package wci.frontend.parse.parsers;
 
-import wci.frontend.scan.TokenType;
+import java.util.ArrayList;
+import java.util.EnumSet;
+
 import wci.frontend.parse.TopDownParser;
 import wci.frontend.scan.Token;
 import wci.frontend.scan.TokenType;
-import java.util.EnumSet;
-import java.util.ArrayList;
 
-import wci.frontend.*;
 import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
+import static wci.frontend.scan.TokenType.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.ARRAY;
-import static wci.intermediate.typeimpl.TypeFormImpl.SUBRANGE;
 import static wci.intermediate.typeimpl.TypeFormImpl.ENUMERATION;
+import static wci.intermediate.typeimpl.TypeFormImpl.SUBRANGE;
 import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 
 /**
@@ -64,6 +61,7 @@ class ArrayTypeParser extends TypeSpecificationParser
      * @return the array type specification.
      * @throws Exception if an error occurred.
      */
+    @Override
     public TypeSpec parse(Token token)
         throws Exception
     {

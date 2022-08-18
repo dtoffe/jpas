@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 
-import wci.frontend.*;
+import wci.backend.interpreter.*;
 import wci.frontend.scan.TokenType;
 import wci.intermediate.*;
-import wci.backend.interpreter.*;
 import wci.intermediate.symtabimpl.Predefined;
 import wci.intermediate.typeimpl.TypeFormImpl;
 
 import static wci.frontend.scan.TokenType.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;
+import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 
 /**
  * <h1>CellTypePair</h1>
@@ -70,8 +69,6 @@ public class CellTypePair
 
     /**
      * Parse a variable in the command to obtain its memory cell.
-     * @param type the variable's data type.
-     * @param cell the variable's memory cell.
      * @throws Exception if an error occurred.
      */
     protected void parseVariable()

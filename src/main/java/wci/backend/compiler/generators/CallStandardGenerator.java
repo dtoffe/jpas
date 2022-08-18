@@ -2,19 +2,16 @@ package wci.backend.compiler.generators;
 
 import java.util.ArrayList;
 
-import wci.frontend.*;
+import wci.backend.compiler.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
-import wci.backend.compiler.*;
 
-import static wci.frontend.scan.TokenType.*;
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
-import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.backend.compiler.Instruction.*;
+import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
+import static wci.intermediate.symtabimpl.RoutineCodeImpl.*;
+import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
+import static wci.intermediate.typeimpl.TypeFormImpl.*;
 
 /**
  * <h1>CallStandardGenerator</h1>

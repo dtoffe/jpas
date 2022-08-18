@@ -2,11 +2,8 @@ package wci.backend.interpreter.executors;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
 import wci.backend.interpreter.*;
-
-import static wci.intermediate.ICodeNodeType.*;
-import static wci.backend.interpreter.RuntimeErrorCode.*;
+import wci.intermediate.*;
 
 /**
  * <h1>IfExecutor</h1>
@@ -20,7 +17,7 @@ public class IfExecutor extends StatementExecutor
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public IfExecutor(Executor parent)
     {
@@ -32,6 +29,7 @@ public class IfExecutor extends StatementExecutor
      * @param node the root node of the statement.
      * @return null.
      */
+    @Override
     public Object execute(ICodeNode node)
     {
         // Get the IF node's children.

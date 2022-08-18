@@ -5,17 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
-import wci.intermediate.icodeimpl.*;
 import wci.backend.interpreter.*;
+import wci.intermediate.*;
+import wci.intermediate.icodeimpl.*;
+import wci.intermediate.symtabimpl.*;
 import wci.message.*;
 
-import static wci.intermediate.ICodeNodeType.*;
-import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeKeyImpl.*;
-import static wci.intermediate.typeimpl.TypeFormImpl.*;
 import static wci.backend.interpreter.RuntimeErrorCode.*;
+import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
+import static wci.intermediate.typeimpl.TypeFormImpl.*;
+import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.message.MessageType.*;
 
 /**
@@ -30,7 +29,7 @@ public class StatementExecutor extends Executor
 {
     /**
      * Constructor.
-     * @param the parent executor.
+     * @param parent the parent executor.
      */
     public StatementExecutor(Executor parent)
     {
@@ -330,8 +329,7 @@ public class StatementExecutor extends Executor
     /**
      * Send a message about a call to a declared procedure or function.
      * @param node the parse tree node.
-     * @param variableName the name of the variable.
-     * @param value the value of the expression.
+     * @param routineName the name of the routine.
      */
     protected void sendCallMessage(ICodeNode node, String routineName)
     {
@@ -347,8 +345,7 @@ public class StatementExecutor extends Executor
     /**
      * Send a message about a return from a declared procedure or function.
      * @param node the parse tree node.
-     * @param variableName the name of the variable.
-     * @param value the value of the expression.
+     * @param routineName the name of the routine.
      */
     protected void sendReturnMessage(ICodeNode node, String routineName)
     {

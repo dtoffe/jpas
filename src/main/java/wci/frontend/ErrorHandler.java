@@ -2,10 +2,8 @@ package wci.frontend;
 
 import wci.frontend.parse.Parser;
 import wci.frontend.scan.Token;
-import wci.frontend.*;
 import wci.message.Message;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
 import static wci.message.MessageType.SYNTAX_ERROR;
 
@@ -37,7 +35,6 @@ public class ErrorHandler
      * @param token the bad token.
      * @param errorCode the error code.
      * @param parser the parser.
-     * @return the flagger string.
      */
     public void flag(Token token, ErrorCode errorCode, Parser parser)
     {

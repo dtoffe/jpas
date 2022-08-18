@@ -2,6 +2,7 @@ package wci.frontend.scan.tokens;
 
 import wci.frontend.ErrorCode;
 import wci.frontend.scan.Token;
+
 import wci.frontend.*;
 
 import static wci.frontend.scan.TokenType.*;
@@ -38,6 +39,7 @@ public class ErrorToken extends Token
      * Do nothing.  Do not consume any source characters.
      * @throws Exception if an error occurred.
      */
+    @Override
     protected void extract()
         throws Exception
     {

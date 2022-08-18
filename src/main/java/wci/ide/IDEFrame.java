@@ -1,11 +1,10 @@
 package wci.ide;
 
-import wci.ide.*;
-import wci.ide.ideimpl.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import wci.ide.ideimpl.*;
 
 /**
  * <h1>IDEFrame</h1>
@@ -107,6 +106,7 @@ public class IDEFrame
      * Process a window event.
      * @param event the event.
      */
+    @Override
     protected void processWindowEvent(WindowEvent event)
     {
         super.processWindowEvent(event);
@@ -125,6 +125,7 @@ public class IDEFrame
      * Set the path of the source file.
      * @param sourcePath the path.
      */
+    @Override
     public void setSourcePath(String sourcePath)
     {
         this.sourcePath = sourcePath;
@@ -133,6 +134,7 @@ public class IDEFrame
     /**
      * @return the path of the source file.
      */
+    @Override
     public String getSourcePath()
     {
         return sourcePath != null ? sourcePath : "";
@@ -142,6 +144,7 @@ public class IDEFrame
      * Set the path of the runtime input data file.
      * @param inputPath the path.
      */
+    @Override
     public void setInputPath(String inputPath)
     {
         this.inputPath = inputPath;
@@ -150,6 +153,7 @@ public class IDEFrame
     /**
      * @return the path of the runtime input data file.
      */
+    @Override
     public String getInputPath()
     {
         return inputPath != null ? inputPath : "";
@@ -159,6 +163,7 @@ public class IDEFrame
      * Start the debugger process.
      * @param sourceName the source file name.
      */
+    @Override
     public void startDebuggerProcess(String sourceName)
     {
         debuggerProcess = new DebuggerProcess(this, sourceName);
@@ -168,6 +173,7 @@ public class IDEFrame
     /**
      * Stop the debugger process.
      */
+    @Override
     public void stopDebuggerProcess()
     {
         if (debuggerProcess != null) {
@@ -180,6 +186,7 @@ public class IDEFrame
      * Send a command or runtime input text to the debugger process.
      * @param text the command string or input text.
      */
+    @Override
     public void sendToDebuggerProcess(String text)
     {
         debuggerProcess.writeToDebuggerStandardInput(text);
@@ -190,6 +197,7 @@ public class IDEFrame
      * @param message the message.
      * @param color the message color.
      */
+    @Override
     public void setEditWindowMessage(String message, Color color)
     {
         editFrame.setMessage(message, color);
@@ -198,6 +206,7 @@ public class IDEFrame
     /**
      * Clear the editor window's syntax errors.
      */
+    @Override
     public void clearEditWindowErrors()
     {
         editFrame.clearEditWindowErrors();
@@ -207,6 +216,7 @@ public class IDEFrame
      * Add a syntax error message to the editor window's syntax errors.
      * @param line the error message.
      */
+    @Override
     public void addToEditWindowErrors(String line)
     {
         editFrame.addError(line);
@@ -216,6 +226,7 @@ public class IDEFrame
      * Show the debugger window.
      * @param sourceName the source file name.
      */
+    @Override
     public void showDebugWindow(String sourceName)
     {
         desktop.getDesktopManager().deiconifyFrame(debugFrame);
@@ -227,6 +238,7 @@ public class IDEFrame
     /**
      * Clear the debugger window's listing.
      */
+    @Override
     public void clearDebugWindowListing()
     {
         debugFrame.clearListing();
@@ -236,6 +248,7 @@ public class IDEFrame
      * Add a line to the debugger window's listing.
      * @param line the listing line.
      */
+    @Override
     public void addToDebugWindowListing(String line)
     {
         debugFrame.addListingLine(line);
@@ -245,6 +258,7 @@ public class IDEFrame
      * Select a listing line in the debugger window.
      * @param lineNumber the line number.
      */
+    @Override
     public void selectDebugWindowListingLine(int lineNumber)
     {
         debugFrame.selectListingLine(lineNumber);
@@ -254,6 +268,7 @@ public class IDEFrame
      * Set the debugger to a listing line.
      * @param lineNumber the line number.
      */
+    @Override
     public void setDebugWindowAtListingLine(int lineNumber)
     {
         debugFrame.atListingLine(lineNumber);
@@ -263,6 +278,7 @@ public class IDEFrame
      * Set the debugger to break at a listing line.
      * @param lineNumber the line number.
      */
+    @Override
     public void breakDebugWindowAtListingLine(int lineNumber)
     {
         debugFrame.breakAtListingLine(lineNumber);
@@ -273,6 +289,7 @@ public class IDEFrame
      * @param message the message.
      * @param color the message color.
      */
+    @Override
     public void setDebugWindowMessage(String message, Color color)
     {
         debugFrame.setMessage(message, color);
@@ -281,6 +298,7 @@ public class IDEFrame
     /**
      * Stop the debugger.
      */
+    @Override
     public void stopDebugWindow()
     {
         debugFrame.stop();
@@ -290,6 +308,7 @@ public class IDEFrame
      * Show the call stack window.
      * @param sourceName the source file name.
      */
+    @Override
     public void showCallStackWindow(String sourceName)
     {
         desktop.getDesktopManager().deiconifyFrame(stackFrame);
@@ -307,6 +326,7 @@ public class IDEFrame
     /**
      * Initialize the call stack display.
      */
+    @Override
     public void initializeCallStackWindow()
     {
         stackFrame.initialize();
@@ -317,6 +337,7 @@ public class IDEFrame
      * @param level the routine's nesting level.
      * @param header the routine's header.
      */
+    @Override
     public void addRoutineToCallStackWindow(String level, String header)
     {
         stackFrame.addRoutine(level, header);
@@ -327,6 +348,7 @@ public class IDEFrame
      * @param name the variable's name.
      * @param value the variable's value.
      */
+    @Override
     public void addVariableToCallStackWindow(String name, String value)
     {
         stackFrame.addVariable(name, value);
@@ -335,6 +357,7 @@ public class IDEFrame
     /**
      * Complete the call stack display.
      */
+    @Override
     public void completeCallStackWindow()
     {
         stackFrame.complete();
@@ -344,6 +367,7 @@ public class IDEFrame
      * Show the console window.
      * @param sourceName the source file name.
      */
+    @Override
     public void showConsoleWindow(String sourceName)
     {
         desktop.getDesktopManager().deiconifyFrame(consoleFrame);
@@ -361,6 +385,7 @@ public class IDEFrame
     /**
      * Clear the console window's output.
      */
+    @Override
     public void clearConsoleWindowOutput()
     {
         consoleFrame.clearOutput();
@@ -368,8 +393,9 @@ public class IDEFrame
 
     /**
      * Add output text to the console window.
-     * @param line the output text.
+     * @param text the output text.
      */
+    @Override
     public void addToConsoleWindowOutput(String text)
     {
        consoleFrame.addToOutput(text);
@@ -378,6 +404,7 @@ public class IDEFrame
     /**
      * Enable runtime input from the console window.
      */
+    @Override
     public void enableConsoleWindowInput()
     {
         consoleFrame.enableInput();
@@ -386,6 +413,7 @@ public class IDEFrame
     /**
      * Disable runtime input from the console window.
      */
+    @Override
     public void disableConsoleWindowInput()
     {
         consoleFrame.disableInput();

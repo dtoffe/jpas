@@ -170,7 +170,7 @@ public interface IDEControl
 
     /**
      * Add output text to the console window.
-     * @param line the output text.
+     * @param text the output text.
      */
     public void addToConsoleWindowOutput(String text);
 

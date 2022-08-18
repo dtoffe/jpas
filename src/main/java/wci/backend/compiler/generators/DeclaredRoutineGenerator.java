@@ -2,14 +2,13 @@ package wci.backend.compiler.generators;
 
 import java.util.ArrayList;
 
-import wci.intermediate.*;
-import wci.intermediate.symtabimpl.*;
 import wci.backend.compiler.*;
+import wci.intermediate.*;
 
-import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
-import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.backend.compiler.Directive.*;
 import static wci.backend.compiler.Instruction.*;
+import static wci.intermediate.symtabimpl.DefinitionImpl.*;
+import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 
 /**
  * <h1>DeclaredRoutineGenerator</h1>
@@ -28,7 +27,7 @@ public class DeclaredRoutineGenerator extends CodeGenerator
 
     /**
      * Constructor.
-     * @param the parent generator.
+     * @param parent the parent generator.
      */
     public DeclaredRoutineGenerator(CodeGenerator parent)
     {
@@ -39,6 +38,7 @@ public class DeclaredRoutineGenerator extends CodeGenerator
      * Generate code for a declared procedure or function
      * @param routineId the symbol table entry of the routine's name.
      */
+    @Override
     public void generate(SymTabEntry routineId)
         throws CompilerException
     {

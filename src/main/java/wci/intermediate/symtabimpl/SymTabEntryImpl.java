@@ -39,6 +39,7 @@ public class SymTabEntryImpl
      * Getter.
      * @return the name of the entry.
      */
+    @Override
     public String getName()
     {
         return name;
@@ -48,6 +49,7 @@ public class SymTabEntryImpl
      * Getter.
      * @return the symbol table that contains this entry.
      */
+    @Override
     public SymTab getSymTab()
     {
         return symTab;
@@ -57,6 +59,7 @@ public class SymTabEntryImpl
      * Setter.
      * @param definition the definition to set.
      */
+    @Override
     public void setDefinition(Definition definition)
     {
         this.definition = definition;
@@ -66,6 +69,7 @@ public class SymTabEntryImpl
      * Getter.
      * @return the definition.
      */
+    @Override
     public Definition getDefinition()
     {
         return definition;
@@ -75,6 +79,7 @@ public class SymTabEntryImpl
      * Setter.
      * @param typeSpec the type specification to set.
      */
+    @Override
     public void setTypeSpec(TypeSpec typeSpec)
     {
         this.typeSpec = typeSpec;
@@ -84,6 +89,7 @@ public class SymTabEntryImpl
      * Getter.
      * @return the type specification.
      */
+    @Override
     public TypeSpec getTypeSpec()
     {
         return typeSpec;
@@ -93,6 +99,7 @@ public class SymTabEntryImpl
      * Append a source line number to the entry.
      * @param lineNumber the line number to append.
      */
+    @Override
     public void appendLineNumber(int lineNumber)
     {
         lineNumbers.add(lineNumber);
@@ -102,6 +109,7 @@ public class SymTabEntryImpl
      * Getter.
      * @return the list of source line numbers for the entry.
      */
+    @Override
     public ArrayList<Integer> getLineNumbers()
     {
         return lineNumbers;
@@ -112,6 +120,7 @@ public class SymTabEntryImpl
      * @param key the attribute key.
      * @param value the attribute value.
      */
+    @Override
     public void setAttribute(SymTabKey key, Object value)
     {
         put(key, value);
@@ -122,6 +131,7 @@ public class SymTabEntryImpl
      * @param key the attribute key.
      * @return the attribute value.
      */
+    @Override
     public Object getAttribute(SymTabKey key)
     {
         return get(key);

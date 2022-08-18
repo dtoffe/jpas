@@ -1,14 +1,15 @@
 package wci.ide.ideimpl;
 
-import java.io.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
 
 import wci.ide.IDEControl;
 
@@ -90,6 +91,7 @@ public class EditFrame
         // Mouse click listener for the syntax errors.
         syntaxList.addMouseListener(new MouseAdapter()
         {
+            @Override
             public void mouseClicked(MouseEvent event)
             {
                 highlightError(syntaxList.locationToIndex(event.getPoint()));
@@ -278,6 +280,7 @@ public class EditFrame
      * Button event dispatcher.
      * @param event the button event.
      */
+    @Override
     public void actionPerformed(ActionEvent event)
     {
         Object button = event.getSource();

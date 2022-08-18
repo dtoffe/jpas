@@ -1,10 +1,11 @@
 package wci.frontend.scan.tokens;
 
 import wci.frontend.scan.Token;
+
 import wci.frontend.*;
 
-import static wci.frontend.scan.TokenType.*;
 import static wci.frontend.ErrorCode.*;
+import static wci.frontend.scan.TokenType.*;
 
 /**
  * <h1>PascalNumberToken</h1>
@@ -33,6 +34,7 @@ public class NumberToken extends Token
      * Extract a Pascal number token from the source.
      * @throws Exception if an error occurred.
      */
+    @Override
     protected void extract()
         throws Exception
     {

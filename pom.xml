@@ -11,5 +11,18 @@
         <maven.compiler.target>16</maven.compiler.target>
         <exec.mainClass>org.github.jpas.Jpas</exec.mainClass>
     </properties>
+    <dependencies>
+        <!-- https://github.com/bytedeco/javacpp-presets/tree/master/llvm -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacpp</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>llvm-platform</artifactId>
+            <version>13.0.1-1.5.7</version>
+        </dependency>
+    </dependencies>
     <name>jpas</name>
 </project>

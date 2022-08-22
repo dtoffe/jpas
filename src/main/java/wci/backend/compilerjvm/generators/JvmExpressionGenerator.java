@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Label;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -24,13 +24,13 @@ import static wci.intermediate.typeimpl.TypeKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class ExpressionGenerator extends StatementGenerator
+public class JvmExpressionGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public ExpressionGenerator(CodeGenerator parent)
+    public JvmExpressionGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -130,7 +130,7 @@ public class ExpressionGenerator extends StatementGenerator
             case CALL: {
 
                 // Generate code to call a function.
-                CallGenerator callGenerator = new CallGenerator(this);
+                JvmCallGenerator callGenerator = new JvmCallGenerator(this);
                 callGenerator.generate(node);
 
                 break;

@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import java.util.ArrayList;
 
 import wci.intermediate.*;
@@ -22,13 +22,13 @@ import static wci.intermediate.typeimpl.TypeKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class AssignmentGenerator extends StatementGenerator
+public class JvmAssignmentGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public AssignmentGenerator(CodeGenerator parent)
+    public JvmAssignmentGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -51,7 +51,7 @@ public class AssignmentGenerator extends StatementGenerator
         SymTabEntry targetId = (SymTabEntry) targetNode.getAttribute(ID);
         TypeSpec targetType = targetNode.getTypeSpec();
         TypeSpec exprType = exprNode.getTypeSpec();
-        ExpressionGenerator exprGenerator = new ExpressionGenerator(this);
+        JvmExpressionGenerator exprGenerator = new JvmExpressionGenerator(this);
 
         int slot;          // local variables array slot number of the target
         int nestingLevel;  // nesting level of the target
@@ -129,7 +129,7 @@ public class AssignmentGenerator extends StatementGenerator
                                           int index, int nestingLevel,
                                           ICodeNode exprNode,
                                           TypeSpec exprType,
-                                          ExpressionGenerator exprGenerator)
+                                          JvmExpressionGenerator exprGenerator)
     {
         // Generate code to evaluate the expression.
         // Special cases: float variable := integer constant
@@ -215,7 +215,7 @@ public class AssignmentGenerator extends StatementGenerator
      */
     private void generateStringAssignment(TypeSpec targetType,
                                           ICodeNode exprNode, TypeSpec exprType,
-                                          ExpressionGenerator exprGenerator)
+                                          JvmExpressionGenerator exprGenerator)
     {
         int targetLength =
                 (Integer) targetType.getAttribute(ARRAY_ELEMENT_COUNT);

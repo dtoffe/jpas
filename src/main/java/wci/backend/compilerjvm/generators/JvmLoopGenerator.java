@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Label;
 import wci.backend.CompilerException;
 import java.util.ArrayList;
@@ -19,13 +19,13 @@ import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class LoopGenerator extends StatementGenerator
+public class JvmLoopGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public LoopGenerator(CodeGenerator parent)
+    public JvmLoopGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -39,8 +39,8 @@ public class LoopGenerator extends StatementGenerator
         throws CompilerException
     {
         ArrayList<ICodeNode> loopChildren = node.getChildren();
-        ExpressionGenerator expressionGenerator = new ExpressionGenerator(this);
-        StatementGenerator statementGenerator = new StatementGenerator(this);
+        JvmExpressionGenerator expressionGenerator = new JvmExpressionGenerator(this);
+        JvmStatementGenerator statementGenerator = new JvmStatementGenerator(this);
         Label loopLabel = Label.newLabel();
         Label nextLabel = Label.newLabel();
 

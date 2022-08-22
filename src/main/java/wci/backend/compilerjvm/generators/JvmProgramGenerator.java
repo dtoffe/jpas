@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.LocalStack;
 import wci.backend.LocalVariables;
 import wci.backend.CompilerException;
@@ -21,7 +21,7 @@ import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class ProgramGenerator extends CodeGenerator
+public class JvmProgramGenerator extends JvmCodeGenerator
 {
     private SymTabEntry programId;
     private String programName;
@@ -30,7 +30,7 @@ public class ProgramGenerator extends CodeGenerator
      * Constructor.
      * @param parent the parent generator.
      */
-    public ProgramGenerator(CodeGenerator parent)
+    public JvmProgramGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -112,8 +112,8 @@ public class ProgramGenerator extends CodeGenerator
     private void generateRoutines()
         throws CompilerException
     {
-        DeclaredRoutineGenerator declaredRoutineGenerator =
-            new DeclaredRoutineGenerator(this);
+        JvmDeclaredRoutineGenerator declaredRoutineGenerator =
+            new JvmDeclaredRoutineGenerator(this);
         ArrayList<SymTabEntry> routineIds =
             (ArrayList<SymTabEntry>) programId.getAttribute(ROUTINE_ROUTINES);
 
@@ -135,8 +135,8 @@ public class ProgramGenerator extends CodeGenerator
         generateMainMethodPrologue();
 
         // Generate code to allocate any arrays, records, and strings.
-        StructuredDataGenerator structuredDataGenerator =
-                                    new StructuredDataGenerator(this);
+        JvmStructuredDataGenerator structuredDataGenerator =
+                                    new JvmStructuredDataGenerator(this);
         structuredDataGenerator.generate(programId);
 
         generateMainMethodCode();
@@ -178,7 +178,7 @@ public class ProgramGenerator extends CodeGenerator
         emitBlankLine();
 
         // Generate code for the compound statement.
-        StatementGenerator statementGenerator = new StatementGenerator(this);
+        JvmStatementGenerator statementGenerator = new JvmStatementGenerator(this);
         statementGenerator.generate(root);
     }
 

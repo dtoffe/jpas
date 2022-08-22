@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Label;
 import wci.backend.CompilerException;
 import java.util.ArrayList;
@@ -19,13 +19,13 @@ import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class SelectGenerator extends StatementGenerator
+public class JvmSelectGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public SelectGenerator(CodeGenerator parent)
+    public JvmSelectGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -66,7 +66,7 @@ public class SelectGenerator extends StatementGenerator
         branchLabels.add(Label.newLabel());  // "next" label
 
         // Generate code to evaluate the SELECT expression.
-        ExpressionGenerator exprGenerator = new ExpressionGenerator(this);
+        JvmExpressionGenerator exprGenerator = new JvmExpressionGenerator(this);
         exprGenerator.generate(exprNode);
 
         // Process the select branches.
@@ -166,7 +166,7 @@ public class SelectGenerator extends StatementGenerator
                                           ArrayList<Label> branchLabels)
         throws CompilerException
     {
-        StatementGenerator stmtGenerator = new StatementGenerator(this);
+        JvmStatementGenerator stmtGenerator = new JvmStatementGenerator(this);
         emitBlankLine();
 
         // Loop to emit each branch label and then generate code for

@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Label;
 import wci.backend.CompilerException;
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ import static wci.backend.compilerjvm.Instruction.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class IfGenerator extends StatementGenerator
+public class JvmIfGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public IfGenerator(CodeGenerator parent)
+    public JvmIfGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -40,8 +40,8 @@ public class IfGenerator extends StatementGenerator
         ICodeNode expressionNode = children.get(0);
         ICodeNode thenNode = children.get(1);
         ICodeNode elseNode = children.size() > 2 ? children.get(2) : null;
-        ExpressionGenerator expressionGenerator = new ExpressionGenerator(this);
-        StatementGenerator  statementGenerator  = new StatementGenerator(this);
+        JvmExpressionGenerator expressionGenerator = new JvmExpressionGenerator(this);
+        JvmStatementGenerator  statementGenerator  = new JvmStatementGenerator(this);
         Label nextLabel = Label.newLabel();
 
         // Generate code for the boolean expression.

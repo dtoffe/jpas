@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import java.util.ArrayList;
 
 import wci.intermediate.*;
@@ -20,13 +20,13 @@ import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class CallDeclaredGenerator extends CallGenerator
+public class JvmCallDeclaredGenerator extends JvmCallGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public CallDeclaredGenerator(CodeGenerator parent)
+    public JvmCallDeclaredGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -69,7 +69,7 @@ public class CallDeclaredGenerator extends CallGenerator
         ArrayList<ICodeNode> actualNodes = parmsNode.getChildren();
         ArrayList<SymTabEntry> formalIds =
             (ArrayList<SymTabEntry>) routineId.getAttribute(ROUTINE_PARMS);
-        ExpressionGenerator exprGenerator = new ExpressionGenerator(this);
+        JvmExpressionGenerator exprGenerator = new JvmExpressionGenerator(this);
 
         // Iterate over the formal parameters.
         for (int i = 0; i < formalIds.size(); ++i) {
@@ -146,7 +146,7 @@ public class CallDeclaredGenerator extends CallGenerator
      * @param exprGenerator the expression code generator.
      */
     private void generateWrap(ICodeNode actualNode, TypeSpec formalType,
-                              int wrapSlot, ExpressionGenerator exprGenerator)
+                              int wrapSlot, JvmExpressionGenerator exprGenerator)
     {
         // Wrap the value of an actual parameter.
         String wrapper = varParmWrapper(formalType);  // selected wrapper

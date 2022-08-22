@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Label;
 import wci.backend.compilerjvm.Instruction;
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ import static wci.intermediate.typeimpl.TypeKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class StructuredDataGenerator extends CodeGenerator
+public class JvmStructuredDataGenerator extends JvmCodeGenerator
 {
     /**
      * Constructor.
      * @param parent the parent generator.
      */
-    public StructuredDataGenerator(CodeGenerator parent)
+    public JvmStructuredDataGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }

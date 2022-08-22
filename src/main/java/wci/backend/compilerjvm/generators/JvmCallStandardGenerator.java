@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Label;
 import wci.backend.compilerjvm.Instruction;
 import java.util.ArrayList;
@@ -23,15 +23,15 @@ import static wci.intermediate.typeimpl.TypeFormImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class CallStandardGenerator extends CallGenerator
+public class JvmCallStandardGenerator extends JvmCallGenerator
 {
-    private ExpressionGenerator exprGenerator;
+    private JvmExpressionGenerator exprGenerator;
 
     /**
      * Constructor.
      * @param the parent executor.
      */
-    public CallStandardGenerator(CodeGenerator parent)
+    public JvmCallStandardGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -46,7 +46,7 @@ public class CallStandardGenerator extends CallGenerator
         SymTabEntry routineId = (SymTabEntry) node.getAttribute(ID);
         RoutineCode routineCode =
                         (RoutineCode) routineId.getAttribute(ROUTINE_CODE);
-        exprGenerator = new ExpressionGenerator(this);
+        exprGenerator = new JvmExpressionGenerator(this);
         ICodeNode actualNode = null;
 
         // Get the actual parameters of the call.
@@ -256,8 +256,8 @@ public class CallStandardGenerator extends CallGenerator
                 localStack.use(3, 1);
 
                 int index = 0;
-                ExpressionGenerator exprGenerator =
-                                        new ExpressionGenerator(this);
+                JvmExpressionGenerator exprGenerator =
+                                        new JvmExpressionGenerator(this);
 
                 // Loop to generate code to evaluate each actual parameter.
                 for (ICodeNode writeParmNode : actuals) {

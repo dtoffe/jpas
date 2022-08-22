@@ -3,7 +3,7 @@ package wci.backend.compilerjvm;
 import wci.backend.LocalVariables;
 import wci.backend.LocalStack;
 import wci.backend.CompilerException;
-import wci.backend.compilerjvm.generators.ProgramGenerator;
+import wci.backend.compilerjvm.generators.JvmProgramGenerator;
 import java.io.*;
 
 import wci.backend.*;
@@ -19,14 +19,14 @@ import static wci.intermediate.typeimpl.TypeKeyImpl.*;
 import static wci.message.MessageType.COMPILER_SUMMARY;
 
 /**
- * <h1>CodeGenerator</h1>
+ * <h1>JvmCodeGenerator</h1>
  *
  * <p>The code generator for a compiler back end.</p>
  *
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class CodeGenerator extends Backend
+public class JvmCodeGenerator extends Backend
 {
     private static PrintWriter assemblyFile;
     private static int instructionCount = 0;
@@ -39,13 +39,13 @@ public class CodeGenerator extends Backend
     /**
      * Constructor.
      */
-    public CodeGenerator() {}
+    public JvmCodeGenerator() {}
 
     /**
      * Constructor for subclasses.
      * @param parent the parent code generator.
      */
-    public CodeGenerator(CodeGenerator parent)
+    public JvmCodeGenerator(JvmCodeGenerator parent)
     {
         super();
         this.localVariables = parent.localVariables;
@@ -76,7 +76,7 @@ public class CodeGenerator extends Backend
                                new File(assemblyFileName)));
 
         // Generate code for the main program.
-        CodeGenerator programGenerator = new ProgramGenerator(this);
+        JvmCodeGenerator programGenerator = new JvmProgramGenerator(this);
         programGenerator.generate(iCode.getRoot());
         assemblyFile.close();
 

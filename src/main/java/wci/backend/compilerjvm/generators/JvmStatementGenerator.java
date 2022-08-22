@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.compilerjvm.Directive;
 import wci.backend.CompilerException;
 import wci.intermediate.*;
@@ -16,13 +16,13 @@ import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class StatementGenerator extends CodeGenerator
+public class JvmStatementGenerator extends JvmCodeGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public StatementGenerator(CodeGenerator parent)
+    public JvmStatementGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -48,39 +48,39 @@ public class StatementGenerator extends CodeGenerator
         switch (nodeType) {
 
             case COMPOUND: {
-                CompoundGenerator compoundGenerator =
-                                      new CompoundGenerator(this);
+                JvmCompoundGenerator compoundGenerator =
+                                      new JvmCompoundGenerator(this);
                 compoundGenerator.generate(node);
                 break;
             }
 
             case ASSIGN: {
-                AssignmentGenerator assignmentGenerator =
-                    new AssignmentGenerator(this);
+                JvmAssignmentGenerator assignmentGenerator =
+                    new JvmAssignmentGenerator(this);
                 assignmentGenerator.generate(node);
                 break;
             }
 
             case IF: {
-                IfGenerator ifGenerator = new IfGenerator(this);
+                JvmIfGenerator ifGenerator = new JvmIfGenerator(this);
                 ifGenerator.generate(node);
                 break;
             }
 
             case SELECT: {
-                SelectGenerator selectGenerator = new SelectGenerator(this);
+                JvmSelectGenerator selectGenerator = new JvmSelectGenerator(this);
                 selectGenerator.generate(node);
                 break;
             }
 
             case LOOP: {
-                LoopGenerator loopfGenerator = new LoopGenerator(this);
+                JvmLoopGenerator loopfGenerator = new JvmLoopGenerator(this);
                 loopfGenerator.generate(node);
                 break;
             }
 
             case CALL: {
-                CallGenerator callGenerator = new CallGenerator(this);
+                JvmCallGenerator callGenerator = new JvmCallGenerator(this);
                 callGenerator.generate(node);
                 break;
             }

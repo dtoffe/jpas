@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.CompilerException;
 import java.util.ArrayList;
 
@@ -16,13 +16,13 @@ import static wci.backend.compilerjvm.Instruction.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class CompoundGenerator extends StatementGenerator
+public class JvmCompoundGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public CompoundGenerator(CodeGenerator parent)
+    public JvmCompoundGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -43,8 +43,8 @@ public class CompoundGenerator extends StatementGenerator
             emit(NOP);
         }
         else {
-            StatementGenerator statementGenerator =
-                                   new StatementGenerator(this);
+            JvmStatementGenerator statementGenerator =
+                                   new JvmStatementGenerator(this);
 
             for (ICodeNode child : children) {
                 statementGenerator.generate(child);

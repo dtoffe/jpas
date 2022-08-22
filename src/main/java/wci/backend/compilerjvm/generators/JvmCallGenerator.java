@@ -1,6 +1,6 @@
 package wci.backend.compilerjvm.generators;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.intermediate.*;
 
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
@@ -15,13 +15,13 @@ import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
  * <p>Copyright (c) 2009 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-public class CallGenerator extends StatementGenerator
+public class JvmCallGenerator extends JvmStatementGenerator
 {
     /**
      * Constructor.
      * @param parent the parent executor.
      */
-    public CallGenerator(CodeGenerator parent)
+    public JvmCallGenerator(JvmCodeGenerator parent)
     {
         super(parent);
     }
@@ -36,9 +36,9 @@ public class CallGenerator extends StatementGenerator
         SymTabEntry routineId = (SymTabEntry) node.getAttribute(ID);
         RoutineCode routineCode =
                         (RoutineCode) routineId.getAttribute(ROUTINE_CODE);
-        CallGenerator callGenerator = routineCode == DECLARED
-                                          ? new CallDeclaredGenerator(this)
-                                          : new CallStandardGenerator(this);
+        JvmCallGenerator callGenerator = routineCode == DECLARED
+                                          ? new JvmCallDeclaredGenerator(this)
+                                          : new JvmCallStandardGenerator(this);
 
         callGenerator.generate(node);
     }

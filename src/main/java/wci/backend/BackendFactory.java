@@ -1,6 +1,6 @@
 package wci.backend;
 
-import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.JvmCodeGenerator;
 import wci.backend.interpreter.Executor;
 import wci.intermediate.TypeSpec;
 import wci.intermediate.symtabimpl.Predefined;
@@ -25,7 +25,7 @@ public class BackendFactory
         throws Exception
     {
         if (operation.equalsIgnoreCase("compile")) {
-            return new CodeGenerator();
+            return new JvmCodeGenerator();
         }
         else if (operation.equalsIgnoreCase("execute")) {
             return new Executor();

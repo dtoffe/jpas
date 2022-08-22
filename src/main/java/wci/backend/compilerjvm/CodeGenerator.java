@@ -1,14 +1,17 @@
-package wci.backend.compiler;
+package wci.backend.compilerjvm;
 
+import wci.backend.LocalVariables;
+import wci.backend.LocalStack;
+import wci.backend.CompilerException;
+import wci.backend.compilerjvm.generators.ProgramGenerator;
 import java.io.*;
 
 import wci.backend.*;
-import wci.backend.compiler.generators.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 import wci.message.*;
 
-import static wci.backend.compiler.Instruction.*;
+import static wci.backend.compilerjvm.Instruction.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;
 import static wci.intermediate.symtabimpl.SymTabKeyImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;

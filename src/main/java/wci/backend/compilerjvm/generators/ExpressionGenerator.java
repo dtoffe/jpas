@@ -1,15 +1,16 @@
-package wci.backend.compiler.generators;
+package wci.backend.compilerjvm.generators;
 
+import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.Label;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
-import wci.backend.compiler.*;
 import wci.intermediate.*;
 import wci.intermediate.icodeimpl.*;
 import wci.intermediate.symtabimpl.*;
 import wci.intermediate.typeimpl.*;
 
-import static wci.backend.compiler.Instruction.*;
+import static wci.backend.compilerjvm.Instruction.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.typeimpl.TypeFormImpl.*;

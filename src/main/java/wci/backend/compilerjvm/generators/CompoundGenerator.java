@@ -1,11 +1,12 @@
-package wci.backend.compiler.generators;
+package wci.backend.compilerjvm.generators;
 
+import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.CompilerException;
 import java.util.ArrayList;
 
-import wci.backend.compiler.*;
 import wci.intermediate.*;
 
-import static wci.backend.compiler.Instruction.*;
+import static wci.backend.compilerjvm.Instruction.*;
 
 /**
  * <h1>CompoundExecutor</h1>

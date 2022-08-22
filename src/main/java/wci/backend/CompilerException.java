@@ -1,4 +1,4 @@
-package wci.backend.compiler;
+package wci.backend;
 
 /**
  * <h1>PascalCompilerException</h1>

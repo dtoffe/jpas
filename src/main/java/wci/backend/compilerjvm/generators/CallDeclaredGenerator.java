@@ -1,12 +1,12 @@
-package wci.backend.compiler.generators;
+package wci.backend.compilerjvm.generators;
 
+import wci.backend.compilerjvm.CodeGenerator;
 import java.util.ArrayList;
 
-import wci.backend.compiler.*;
 import wci.intermediate.*;
 import wci.intermediate.symtabimpl.*;
 
-import static wci.backend.compiler.Instruction.*;
+import static wci.backend.compilerjvm.Instruction.*;
 import static wci.intermediate.icodeimpl.ICodeKeyImpl.*;
 import static wci.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
 import static wci.intermediate.symtabimpl.DefinitionImpl.*;

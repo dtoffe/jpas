@@ -1,6 +1,6 @@
 package wci.backend;
 
-import wci.backend.compiler.CodeGenerator;
+import wci.backend.compilerjvm.CodeGenerator;
 import wci.backend.interpreter.Executor;
 import wci.intermediate.TypeSpec;
 import wci.intermediate.symtabimpl.Predefined;

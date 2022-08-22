@@ -1,6 +1,8 @@
-package wci.backend.compiler.generators;
+package wci.backend.compilerjvm.generators;
 
-import wci.backend.compiler.*;
+import wci.backend.compilerjvm.CodeGenerator;
+import wci.backend.compilerjvm.Directive;
+import wci.backend.CompilerException;
 import wci.intermediate.*;
 import wci.intermediate.icodeimpl.*;
 

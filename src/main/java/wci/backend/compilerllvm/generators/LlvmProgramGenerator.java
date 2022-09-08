@@ -62,7 +62,7 @@ public class LlvmProgramGenerator extends LlvmCodeGenerator {
         LLVMPositionBuilderAtEnd(builder, mainEntryBlock);
 
         // TODO: generate everything else
-        // TODO: verify insertion points placament for global vars and nested procedures
+        // TODO: verify insertion points placement for global vars and nested procedures
 //        generateFields();
 //        generateConstructor();
 //        generateRoutines();

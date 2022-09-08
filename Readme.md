@@ -7,15 +7,54 @@ The original source code in the book can be [downloaded](https://apropos-logic.c
 
 ## Project objectives
 
-I would like to write a more complete compiler for a "pascalish", not necessarily Pascal (whatever dialect) compatible language. I like Modula statements, for example. I take this project as a playground to learn how language features are implemented.
+I would like to write a more complete compiler for a "pascalish", not necessarily Pascal (whatever dialect) compatible language. I like Modula statements, for example. I take this project as a playground to learn how language features are implemented, specially the LLVM backend.
 
 ## Roadmap (hopefully...)
 
 - DONE (kind of, see /docs/Original Grammar.txt) ~Extract from the original code the precise grammar of the Pascal subset supported, since it is surprisingly not specified in the book (at least explicitly, in a succint (E)BNF grammar form).~
 - Partially DONE (more can come later). ~Rename and reorganize packages and project structure.~
 - Mostly DONE ~Eliminate the framework parts intended to make support for another languages straightforward, since it is not something I intend to do. Keep the parts that make writing alternative scanners, parsers or code generation backends possible.~
+- (WORKING ON IT...) Write an LLVM based code generator backend.
 - Implement Modula style statements (IF <cond> THEN <statements> [[ELSIF <statements>] ELSE <statements>] END instead of IF <cond> THEN (<statement> | BEGIN <statements> END) [ELSE IF... etc.).
 - Consider if there is any benefit in building a specific language AST instead of the generic ICode* implementation, do it if appropiate.
-- Write an LLVM based code generator backend.
 - Add some missing Pascal/Modula style language features (sets, variant records, pointers, jedi force, etc...)
 - Dominate the world...
+
+## Usage
+
+Build the project, then open a terminal in the \target subdirectory and run this:
+
+```
+> java -jar .\classes\jpas-1.0-SNAPSHOT-jar-with-dependencies.jar compile ..\examples\HelloOnce.pas
+```
+
+You should see this output printed:
+
+```
+001 PROGRAM HelloOnce;
+002
+003 BEGIN
+004     writeln('Hello, world.')
+005 END.
+
+                   5 source lines.
+                   0 syntax errors.
+                0,04 seconds total parsing time.
+
+                   0 instructions generated.
+                0,65 seconds total code generation time.
+```
+
+Within the \target subdirectory you should see a file named "helloonce.ll" with the following content:
+
+```
+; ModuleID = 'helloonce'
+source_filename = "helloonce"
+
+define void @main() {
+entry:
+  ret void
+}
+```
+
+That's all the LLVM code generator does as of now.

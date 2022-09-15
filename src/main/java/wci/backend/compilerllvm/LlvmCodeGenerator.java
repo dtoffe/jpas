@@ -6,18 +6,36 @@ import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.llvm.LLVM.LLVMBuilderRef;
 import org.bytedeco.llvm.LLVM.LLVMContextRef;
 import org.bytedeco.llvm.LLVM.LLVMModuleRef;
+import org.bytedeco.llvm.LLVM.LLVMTargetDataRef;
+import org.bytedeco.llvm.LLVM.LLVMTargetMachineRef;
+import org.bytedeco.llvm.LLVM.LLVMTargetRef;
+import static org.bytedeco.llvm.global.LLVM.LLVMCodeGenLevelDefault;
+import static org.bytedeco.llvm.global.LLVM.LLVMCodeModelDefault;
 import static org.bytedeco.llvm.global.LLVM.LLVMContextCreate;
 import static org.bytedeco.llvm.global.LLVM.LLVMContextDispose;
+import static org.bytedeco.llvm.global.LLVM.LLVMCopyStringRepOfTargetData;
 import static org.bytedeco.llvm.global.LLVM.LLVMCreateBuilderInContext;
+import static org.bytedeco.llvm.global.LLVM.LLVMCreateTargetDataLayout;
+import static org.bytedeco.llvm.global.LLVM.LLVMCreateTargetMachine;
 import static org.bytedeco.llvm.global.LLVM.LLVMDisposeBuilder;
+import static org.bytedeco.llvm.global.LLVM.LLVMDisposeMessage;
 import static org.bytedeco.llvm.global.LLVM.LLVMDisposeModule;
+import static org.bytedeco.llvm.global.LLVM.LLVMGetDefaultTargetTriple;
+import static org.bytedeco.llvm.global.LLVM.LLVMGetHostCPUFeatures;
+import static org.bytedeco.llvm.global.LLVM.LLVMGetHostCPUName;
+import static org.bytedeco.llvm.global.LLVM.LLVMGetTargetFromTriple;
 import static org.bytedeco.llvm.global.LLVM.LLVMInitializeNativeAsmParser;
 import static org.bytedeco.llvm.global.LLVM.LLVMInitializeNativeAsmPrinter;
 import static org.bytedeco.llvm.global.LLVM.LLVMInitializeNativeDisassembler;
 import static org.bytedeco.llvm.global.LLVM.LLVMInitializeNativeTarget;
 import static org.bytedeco.llvm.global.LLVM.LLVMLinkInMCJIT;
 import static org.bytedeco.llvm.global.LLVM.LLVMModuleCreateWithNameInContext;
+import static org.bytedeco.llvm.global.LLVM.LLVMObjectFile;
 import static org.bytedeco.llvm.global.LLVM.LLVMPrintModuleToString;
+import static org.bytedeco.llvm.global.LLVM.LLVMRelocDefault;
+import static org.bytedeco.llvm.global.LLVM.LLVMSetDataLayout;
+import static org.bytedeco.llvm.global.LLVM.LLVMSetTarget;
+import static org.bytedeco.llvm.global.LLVM.LLVMTargetMachineEmitToFile;
 
 import wci.backend.*;
 import wci.intermediate.*;
@@ -94,14 +112,40 @@ public class LlvmCodeGenerator extends Backend {
         LLVMInitializeNativeAsmParser();
         LLVMInitializeNativeDisassembler();
         LLVMInitializeNativeTarget();
+        
         // LLVM Context setup
         context = LLVMContextCreate();
         module = LLVMModuleCreateWithNameInContext(programName, context);
         builder = LLVMCreateBuilderInContext(context);
+        
+        // Configure target triple and data layout  -  Found in Stack Overflow:
+        // https://stackoverflow.com/questions/62311918/llvm-c-creating-object-file-results-in-targetmachine-cant-emit-a-file-of-this
+        byte[] errorMessage = "".getBytes();
+        BytePointer triple = LLVMGetDefaultTargetTriple();
+        LLVMTargetRef target = new LLVMTargetRef();
+        LLVMGetTargetFromTriple(triple, target, errorMessage);
+            //printf("error: %s\n", errors);  Pass Message to the handler
+            //LLVMDisposeMessage(errorMessage);
+        LLVMSetTarget(module, triple);
+            //printf("target: %s, [%s], %d, %d\n", LLVMGetTargetName(target), LLVMGetTargetDescription(target), LLVMTargetHasJIT(target), LLVMTargetHasTargetMachine(target));
+            //printf("triple: %s\n", LLVMGetDefaultTargetTriple());
+            //printf("features: %s\n", LLVMGetHostCPUFeatures());
+        LLVMTargetMachineRef machine = LLVMCreateTargetMachine(target, triple, LLVMGetHostCPUName(), LLVMGetHostCPUFeatures(), LLVMCodeGenLevelDefault, LLVMRelocDefault, LLVMCodeModelDefault);
+        LLVMTargetDataRef datalayout = LLVMCreateTargetDataLayout(machine);
+        BytePointer datalayout_str = LLVMCopyStringRepOfTargetData(datalayout);
+            //printf("datalayout: %s\n", datalayout_str);
+        LLVMSetDataLayout(module, datalayout_str);
+            //LLVMDisposeMessage(datalayout_str);
+
+//        byte[] outputFileName = "result.o".getBytes();
+//        LLVMTargetMachineEmitToFile(machine, module, outputFileName, LLVMObjectFile, errorMessage);
+//            //printf("error: %s\n", errorMessage);
+//        LLVMDisposeMessage(errorMessage);
 
         // Generate code for the main program.
         LlvmCodeGenerator programGenerator = new LlvmProgramGenerator(this);
         programGenerator.generate(iCode.getRoot());
+        
         // Print generated module as string into output file
         BytePointer generatedCode = LLVMPrintModuleToString(module);
         assemblyFile.print(generatedCode.getString());
@@ -135,221 +179,221 @@ public class LlvmCodeGenerator extends Backend {
     public void generate(SymTabEntry routineId) throws CompilerException {
     }
 
-//    // =========
-//    // Utilities
-//    // =========
-//
-//    /**
-//     * Return whether or not a data type is structured.
-//     * @param type the data type.
-//     * @return true if the type is a string, array, or record; else false.
-//     */
-//    protected boolean isStructured(TypeSpec type)
-//    {
-//        TypeForm form = type.getForm();
-//
-//        return type.isPascalString() || (form == ARRAY) || (form == RECORD);
-//    }
-//
-//    /**
-//     * Return whether or not a variable is wrapped to pass by reference.
-//     * @param variableId the symbol table entry of the variable.
-//     * @return true if wrapped, false if not.
-//     */
-//    protected boolean isWrapped(SymTabEntry variableId)
-//    {
-//        TypeSpec type = variableId.getTypeSpec();
-//        TypeForm form = type.getForm();
-//        Definition defn = variableId.getDefinition();
-//
-//        // Arrays and records are not wrapped.
-//        return (defn == VAR_PARM) && (form != ARRAY) && (form != RECORD);
-//    }
-//
-//    /**
-//     * Return whether or not a value needs to be cloned to pass by value.
-//     * @param formalId the symbol table entry of the formal parameter.
-//     * @return true if needs wrapping, false if not.
-//     */
-//    protected boolean needsCloning(SymTabEntry formalId)
-//    {
-//        TypeSpec type = formalId.getTypeSpec();
-//        TypeForm form = type.getForm();
-//        Definition defn = formalId.getDefinition();
-//
-//        // Arrays and records are normally passed by reference
-//        // and so must be cloned to be passed by value.
-//        return (defn == VALUE_PARM) && ((form == ARRAY) || (form == RECORD));
-//    }
-//
-//    /**
-//     * Generate a type descriptor of an identifier's type.
-//     * @param id the symbol table entry of an identifier.
-//     * @return the type descriptor.
-//     */
-//    protected String typeDescriptor(SymTabEntry id)
-//    {
-//        TypeSpec type = id.getTypeSpec();
-//
-//        if (type != null) {
-//            if (isWrapped(id)) {
-//                return "L" + varParmWrapper(type.baseType()) + ";";
-//            }
-//            else {
-//                return typeDescriptor(id.getTypeSpec());
-//            }
-//        }
-//        else {
-//            return "V";
-//        }
-//    }
-//
-//    /**
-//     * Generate a type descriptor for a data type.
-//     * @param type the data type.
-//     * @return the type descriptor.
-//     */
-//    protected String typeDescriptor(TypeSpec type)
-//    {
-//        TypeForm form = type.getForm();
-//        StringBuilder buffer = new StringBuilder();
-//
-//        while ((form == ARRAY) && !type.isPascalString()) {
-//            buffer.append("[");
-//            type = (TypeSpec) type.getAttribute(ARRAY_ELEMENT_TYPE);
-//            form = type.getForm();
-//        }
-//
-//        type = type.baseType();
-//
-//        if (type == Predefined.integerType) {
-//            buffer.append("I");
-//        }
-//        else if (type == Predefined.realType) {
-//            buffer.append("F");
-//        }
-//        else if (type == Predefined.booleanType) {
-//            buffer.append("Z");
-//        }
-//        else if (type == Predefined.charType) {
-//            buffer.append("C");
-//        }
-//        else if (type.isPascalString()) {
-//            buffer.append("Ljava/lang/StringBuilder;");
-//        }
-//        else if (form == ENUMERATION) {
-//            buffer.append("I");
-//        }
-//        else /* (form == RECORD) */ {
-//            buffer.append("Ljava/util/HashMap;");
-//        }
-//
-//        return buffer.toString();
-//    }
-//
-//    /**
-//     * Generate a Java type descriptor for a data type.
-//     * @param type the data type.
-//     * @return the type descriptor.
-//     */
-//    private String javaTypeDescriptor(TypeSpec type)
-//    {
-//        TypeForm form = type.getForm();
-//        StringBuilder buffer = new StringBuilder();
-//        boolean isArray = false;
-//
-//        while ((form == ARRAY) && !type.isPascalString()) {
-//            buffer.append("[");
-//            type = (TypeSpec) type.getAttribute(ARRAY_ELEMENT_TYPE);
-//            form = type.getForm();
-//            isArray = true;
-//        }
-//
-//        if (isArray) {
-//            buffer.append("L");
-//        }
-//
-//        type = type.baseType();
-//
-//        if (type == Predefined.integerType) {
-//            buffer.append("java/lang/Integer");
-//        }
-//        else if (type == Predefined.realType) {
-//            buffer.append("java/lang/Float");
-//        }
-//        else if (type == Predefined.booleanType) {
-//            buffer.append("java/lang/Boolean");
-//        }
-//        else if (type == Predefined.charType) {
-//            buffer.append("java/lang/Character");
-//        }
-//        else if (type.isPascalString()) {
-//            buffer.append("java/lang/StringBuilder");
-//        }
-//        else if (form == ENUMERATION) {
-//            buffer.append("java/lang/Integer");
-//        }
-//        else /* (form == RECORD) */ {
-//            buffer.append("java/util/HashMap");
-//        }
-//
-//        if (isArray) {
-//            buffer.append(";");
-//        }
-//
-//        return buffer.toString();
-//    }
-//
-//    /**
-//     * Return the valueOf() signature for a given scalar type.
-//     * @param type the scalar type.
-//     * @return the valueOf() signature.
-//     */
-//    protected String valueOfSignature(TypeSpec type)
-//    {
-//        String javaType = javaTypeDescriptor(type);
-//        String typeCode = typeDescriptor(type);
-//
-//        return String.format("%s.valueOf(%s)L%s;",
-//                             javaType, typeCode, javaType);
-//    }
-//
-//    /**
-//     * Return the xxxValue() signature for a given scalar type.
-//     * @param type the scalar type.
-//     * @return the valueOf() signature.
-//     */
-//    protected String valueSignature(TypeSpec type)
-//    {
-//        String javaType = javaTypeDescriptor(type);
-//        String typeCode = typeDescriptor(type);
-//        String typeName = type == Predefined.integerType ? "int"
-//                        : type == Predefined.realType    ? "float"
-//                        : type == Predefined.booleanType ? "boolean"
-//                        : type == Predefined.charType    ? "char"
-//                        :                                  "int";
-//
-//        return (String.format("%s.%sValue()%s",
-//                              javaType, typeName, typeCode));
-//    }
-//
-//    /**
-//     * Generate the name of the wrapper to use to pass an actual parameter
-//     * by reference.
-//     * @param type the parameter type.
-//     * @return the name of the wrapper.
-//     */
-//    protected String varParmWrapper(TypeSpec type)
-//    {
-//        type = type.baseType();
-//
-//        TypeForm form = type.getForm();
-//
-//        return type == Predefined.integerType ? "IWrap"
-//             : type == Predefined.realType    ? "RWrap"
-//             : type == Predefined.booleanType ? "BWrap"
-//             : form == ENUMERATION            ? "IWrap"
-//             :                                  "CWrap";
-//    }
+    // =========
+    // Utilities
+    // =========
+
+    /**
+     * Return whether or not a data type is structured.
+     * @param type the data type.
+     * @return true if the type is a string, array, or record; else false.
+     */
+    protected boolean isStructured(TypeSpec type)
+    {
+        TypeForm form = type.getForm();
+
+        return type.isPascalString() || (form == ARRAY) || (form == RECORD);
+    }
+
+    /**
+     * Return whether or not a variable is wrapped to pass by reference.
+     * @param variableId the symbol table entry of the variable.
+     * @return true if wrapped, false if not.
+     */
+    protected boolean isWrapped(SymTabEntry variableId)
+    {
+        TypeSpec type = variableId.getTypeSpec();
+        TypeForm form = type.getForm();
+        Definition defn = variableId.getDefinition();
+
+        // Arrays and records are not wrapped.
+        return (defn == VAR_PARM) && (form != ARRAY) && (form != RECORD);
+    }
+
+    /**
+     * Return whether or not a value needs to be cloned to pass by value.
+     * @param formalId the symbol table entry of the formal parameter.
+     * @return true if needs wrapping, false if not.
+     */
+    protected boolean needsCloning(SymTabEntry formalId)
+    {
+        TypeSpec type = formalId.getTypeSpec();
+        TypeForm form = type.getForm();
+        Definition defn = formalId.getDefinition();
+
+        // Arrays and records are normally passed by reference
+        // and so must be cloned to be passed by value.
+        return (defn == VALUE_PARM) && ((form == ARRAY) || (form == RECORD));
+    }
+
+    /**
+     * Generate a type descriptor of an identifier's type.
+     * @param id the symbol table entry of an identifier.
+     * @return the type descriptor.
+     */
+    protected String typeDescriptor(SymTabEntry id)
+    {
+        TypeSpec type = id.getTypeSpec();
+
+        if (type != null) {
+            if (isWrapped(id)) {
+                return "L" + varParmWrapper(type.baseType()) + ";";
+            }
+            else {
+                return typeDescriptor(id.getTypeSpec());
+            }
+        }
+        else {
+            return "V";
+        }
+    }
+
+    /**
+     * Generate a type descriptor for a data type.
+     * @param type the data type.
+     * @return the type descriptor.
+     */
+    protected String typeDescriptor(TypeSpec type)
+    {
+        TypeForm form = type.getForm();
+        StringBuilder buffer = new StringBuilder();
+
+        while ((form == ARRAY) && !type.isPascalString()) {
+            buffer.append("[");
+            type = (TypeSpec) type.getAttribute(ARRAY_ELEMENT_TYPE);
+            form = type.getForm();
+        }
+
+        type = type.baseType();
+
+        if (type == Predefined.integerType) {
+            buffer.append("I");
+        }
+        else if (type == Predefined.realType) {
+            buffer.append("F");
+        }
+        else if (type == Predefined.booleanType) {
+            buffer.append("Z");
+        }
+        else if (type == Predefined.charType) {
+            buffer.append("C");
+        }
+        else if (type.isPascalString()) {
+            buffer.append("Ljava/lang/StringBuilder;");
+        }
+        else if (form == ENUMERATION) {
+            buffer.append("I");
+        }
+        else /* (form == RECORD) */ {
+            buffer.append("Ljava/util/HashMap;");
+        }
+
+        return buffer.toString();
+    }
+
+    /**
+     * Generate a Java type descriptor for a data type.
+     * @param type the data type.
+     * @return the type descriptor.
+     */
+    private String javaTypeDescriptor(TypeSpec type)
+    {
+        TypeForm form = type.getForm();
+        StringBuilder buffer = new StringBuilder();
+        boolean isArray = false;
+
+        while ((form == ARRAY) && !type.isPascalString()) {
+            buffer.append("[");
+            type = (TypeSpec) type.getAttribute(ARRAY_ELEMENT_TYPE);
+            form = type.getForm();
+            isArray = true;
+        }
+
+        if (isArray) {
+            buffer.append("L");
+        }
+
+        type = type.baseType();
+
+        if (type == Predefined.integerType) {
+            buffer.append("java/lang/Integer");
+        }
+        else if (type == Predefined.realType) {
+            buffer.append("java/lang/Float");
+        }
+        else if (type == Predefined.booleanType) {
+            buffer.append("java/lang/Boolean");
+        }
+        else if (type == Predefined.charType) {
+            buffer.append("java/lang/Character");
+        }
+        else if (type.isPascalString()) {
+            buffer.append("java/lang/StringBuilder");
+        }
+        else if (form == ENUMERATION) {
+            buffer.append("java/lang/Integer");
+        }
+        else /* (form == RECORD) */ {
+            buffer.append("java/util/HashMap");
+        }
+
+        if (isArray) {
+            buffer.append(";");
+        }
+
+        return buffer.toString();
+    }
+
+    /**
+     * Return the valueOf() signature for a given scalar type.
+     * @param type the scalar type.
+     * @return the valueOf() signature.
+     */
+    protected String valueOfSignature(TypeSpec type)
+    {
+        String javaType = javaTypeDescriptor(type);
+        String typeCode = typeDescriptor(type);
+
+        return String.format("%s.valueOf(%s)L%s;",
+                             javaType, typeCode, javaType);
+    }
+
+    /**
+     * Return the xxxValue() signature for a given scalar type.
+     * @param type the scalar type.
+     * @return the valueOf() signature.
+     */
+    protected String valueSignature(TypeSpec type)
+    {
+        String javaType = javaTypeDescriptor(type);
+        String typeCode = typeDescriptor(type);
+        String typeName = type == Predefined.integerType ? "int"
+                        : type == Predefined.realType    ? "float"
+                        : type == Predefined.booleanType ? "boolean"
+                        : type == Predefined.charType    ? "char"
+                        :                                  "int";
+
+        return (String.format("%s.%sValue()%s",
+                              javaType, typeName, typeCode));
+    }
+
+    /**
+     * Generate the name of the wrapper to use to pass an actual parameter
+     * by reference.
+     * @param type the parameter type.
+     * @return the name of the wrapper.
+     */
+    protected String varParmWrapper(TypeSpec type)
+    {
+        type = type.baseType();
+
+        TypeForm form = type.getForm();
+
+        return type == Predefined.integerType ? "IWrap"
+             : type == Predefined.realType    ? "RWrap"
+             : type == Predefined.booleanType ? "BWrap"
+             : form == ENUMERATION            ? "IWrap"
+             :                                  "CWrap";
+    }
 
 }

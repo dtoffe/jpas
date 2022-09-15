@@ -75,8 +75,7 @@ public class LlvmProgramGenerator extends LlvmCodeGenerator {
 //    /**
 //     * Generate directives for the fields.
 //     */
-//    private void generateFields()
-//    {
+//    private void generateFields() {
 //        // Runtime timer and standard in.
 //        emitBlankLine();
 //        emitDirective(FIELD_PRIVATE_STATIC, "_runTimer",   "LRunTimer;");
@@ -98,7 +97,7 @@ public class LlvmProgramGenerator extends LlvmCodeGenerator {
 //            }
 //        }
 //    }
-//
+
 //    /**
 //     * Generate code for the main program constructor.
 //     */
